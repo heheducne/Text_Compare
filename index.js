@@ -1,14 +1,13 @@
 /**
  * @format
  */
-
 import {AppRegistry} from 'react-native';
-// import App from './App';
 import {name as appName} from './app.json';
 import { StyleSheet, Text, SafeAreaView, Button,ScrollView,ImageBackground,Alert,Image,View,TextInput } from 'react-native';
 import {React,useState,useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import DocumentPicker from 'react-native-document-picker';
+import RNFS  from 'react-native-fs'
 AppRegistry.registerComponent(appName, () => App);
 
 const logo = {
@@ -21,20 +20,42 @@ const logo = {
   };
   
   const App = () =>{
-    ///
-    const [fileResponse, setFileResponse] = useState([]);
-
-  const handleDocumentSelection = useCallback(async () => {
+    ///set value
+    const [nameFile1, setnameFile1]= useState("Chọn File số 1");
+    const [nameFile2, setnameFile2]= useState("Chọn File số 2");
+    const [fileData1, setFileData1] = useState("Text số 1");
+    const [fileData2, setFileData2] = useState("Text số 2");
+    ////////////////////////////////////////////////
+    /// pick file 
+  let ChoseFile1 = useCallback(async () => {
     try {
-      const response = await DocumentPicker.pick({
-        presentationStyle: 'fullScreen',
-      });
-      setFileResponse(response);
+      let response1 = await DocumentPicker.pickSingle();
+      setnameFile1(response1.name);
+      readFile1(response1.uri);
     } catch (err) {
       console.warn(err);
     }
   }, []);
-    ///
+  let ChoseFile2 = useCallback(async () => {
+    try {
+      let response2 = await DocumentPicker.pickSingle();
+      setnameFile2(response2.name);
+      readFile2(response2.uri);
+    } catch (err) {
+      console.warn(err);
+    }
+  }, []);
+    /////////////////////////////////////////////////
+    //////read file
+    let readFile1 = async (path) => {
+      let response = await RNFS.readFile(path);
+      setFileData1(response); //set the value of response to the fileData Hook.
+    };
+    let readFile2 = async (path) => {
+      let response = await RNFS.readFile(path);
+      setFileData2(response); //set the value of response to the fileData Hook.
+    };
+    /////////////////////////////////////////////////
     return (
       <ScrollView style={styles.container}>
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
@@ -63,14 +84,14 @@ const logo = {
       <Text style={styles.filename}>File 1 📁</Text>
       <View style={styles.innerContainer}>  
           <TextInput  
-                  placeholder="Chọn file số 1"  
+                  placeholder = {nameFile1} 
                   style={styles.textStyle}  
                   editable ={false}
           />  
           <Button
               style={{flexDirection: 'row', justifyContent: 'space-between'}}
               title="Chọn 📑"
-              onPress={handleDocumentSelection}
+              onPress={ChoseFile1}
           />
       </View>
   
@@ -78,13 +99,14 @@ const logo = {
       <Text style={styles.filename}>File 2 📁</Text>
       <View style={styles.innerContainer}>  
           <TextInput  
-                    placeholder="Chọn file số 2"  
-                    style={styles.textStyle}  
+                    placeholder={nameFile2}  
+                    style={styles.textStyle}
+                    editable ={false}  
           />  
           <Button
               style={{flexDirection: 'row', justifyContent: 'space-between'}}
               title="Chọn 📑"
-              onPress={handleDocumentSelection}
+              onPress={ChoseFile2}
           />
       </View>
       </SafeAreaView>
@@ -106,7 +128,7 @@ const logo = {
           />
       </View>
       <TextInput  
-                  placeholder="Text số 1"  
+                  placeholder={fileData1}  
                   style={styles.textBox} 
                   multiline = {true}
                   numberOfLines={10} 
@@ -136,7 +158,7 @@ const logo = {
           />
       </View>
       <TextInput  
-                  placeholder="Text số 2"  
+                  placeholder={fileData2} 
                   style={styles.textBox} 
                   multiline = {true}
                   numberOfLines={10} 
@@ -178,7 +200,7 @@ const logo = {
   
         <Text style={styles.filename2}>Text 2 📃</Text>
         <TextInput  
-                    placeholder="Text số 2"  
+                    placeholder={fileData2}  
                     style={styles.textBox} 
                     multiline = {true}
                     numberOfLines={10} 
