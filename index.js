@@ -8,6 +8,7 @@ import {React,useState,useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS  from 'react-native-fs'
+//////////////////////////////////////////////
 AppRegistry.registerComponent(appName, () => App);
 
 const logo = {
@@ -25,6 +26,8 @@ const logo = {
     const [nameFile2, setnameFile2]= useState("Chọn File số 2");
     const [fileData1, setFileData1] = useState("Text số 1");
     const [fileData2, setFileData2] = useState("Text số 2");
+    const[numofLineFile1,setnumofLineFile1]=useState(0);
+    const[numofLineFile2,setnumofLineFile2]=useState(0);
     ////////////////////////////////////////////////
     /// pick file 
   let ChoseFile1 = useCallback(async () => {
@@ -49,11 +52,15 @@ const logo = {
     //////read file
     let readFile1 = async (path) => {
       let response = await RNFS.readFile(path);
-      setFileData1(response); //set the value of response to the fileData Hook.
+      setFileData1(response.toString()); //set the value of response to the fileData Hook.
+      setnumofLineFile1(response.toString().split("\n").length);
+      console.log(response.toString().split(" ").length);
     };
     let readFile2 = async (path) => {
       let response = await RNFS.readFile(path);
-      setFileData2(response); //set the value of response to the fileData Hook.
+      // console.log(response.toString());
+      setnumofLineFile2(response.toString().split("\n").length);
+      setFileData2(response.toString()); //set the value of response to the fileData Hook.
     };
     /////////////////////////////////////////////////
     return (
@@ -134,8 +141,9 @@ const logo = {
                   numberOfLines={10} 
                   textAlignVertical= 'top'
                   scrollEnabled = {true}
+                  
           />
-      <Text style={styles.filename}>Số dòng: </Text>
+      <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
       <Text style={styles.filename}>Số chữ: </Text>
   
       <Button
@@ -165,7 +173,7 @@ const logo = {
                   textAlignVertical= 'top'
                   scrollEnabled = {true}
           />
-      <Text style={styles.filename}>Số dòng: </Text>
+      <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
       <Text style={styles.filename}>Số chữ: </Text>
       </SafeAreaView>
   
