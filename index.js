@@ -207,7 +207,7 @@ const logo = {
               style={styles.textStyle}
               editable ={true}
               onChangeText = {()=>{text => setFileData2(text)
-                                  fileData2(response.split("\n").length)
+                                  numofLineFile2(fileData2.split("\n").length)
                                 }
                               }
           />
