@@ -1,6 +1,6 @@
-Some packages require:
--npm i react-native-document-picker
--npx expo install expo-status-bar
--npm i react-native-fs
--npm i react-native-highlight-words -force
--npm i highlight-words-core
+Some packages require:<br />
+-npm i react-native-document-picker <br />
+-npx expo install expo-status-bar <br />
+-npm i react-native-fs <br />
+-npm i react-native-highlight-words -force <br />
+-npm i highlight-words-core 
