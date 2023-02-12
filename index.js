@@ -9,6 +9,7 @@ import {StatusBar} from 'expo-status-bar';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS  from 'react-native-fs'
 import Highlighter from './highlight.js';
+import {NavigationContainer} from '@react-navigation/native';
 
 //////////////////////////////////////////////
 AppRegistry.registerComponent(appName, () => App);
@@ -66,6 +67,9 @@ let ChoseFile2 = useCallback(async () => {
     };
     /////////////////////////////////////////////////
     return (
+      <NavigationContainer>
+
+        
       <ScrollView style={styles.container}>
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
         <Text>{"\n"}</Text>
@@ -256,6 +260,8 @@ let ChoseFile2 = useCallback(async () => {
         <StatusBar style="auto" />
       </ImageBackground>
       </ScrollView>
+    
+      </NavigationContainer>
     );
   }
   
