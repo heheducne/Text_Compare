@@ -1,2 +1,4 @@
 -npm install <br />
--npm start to run app
+-npm start to run app <br />
+-npm install @react-navigation/native @react-navigation/native-stack <br />
+-npm install react-native-screens react-native-safe-area-context <br />
