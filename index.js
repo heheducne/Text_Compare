@@ -25,8 +25,8 @@ const App = () =>{
     const [fileData2, setFileData2] = useState("Text số 2");
     const[numofLineFile1,setnumofLineFile1] = useState(0);
     const[numofLineFile2,setnumofLineFile2] = useState(0);
-    const [search_word1,setsearchWord1] = useState(); 
-    const [search_word2,setsearchWord2] = useState(); 
+    const [search_word1,setsearchWord1] = useState(""); 
+    const [search_word2,setsearchWord2] = useState(""); 
     ////////////////////////////////////////////////
     //////////////////// pick file ////////////////////////////////
 let ChoseFile1 = useCallback(async () => {
@@ -144,14 +144,10 @@ let ChoseFile2 = useCallback(async () => {
               <TextInput  
                       placeholder="Tìm kiếm"  
                       style={styles.textStyle2} 
-                      onChangeText={text => setsearchWord1(text)}///////suwar
+                      onChangeText={newtext => setsearchWord1(newtext)}
               />  
-              <Button
-                  style={{flexDirection: 'row', justifyContent: 'space-between'}}
-                  title="Tìm 🔎"
-                  onPress={setsearchWord1}
-              />
           </View>
+
         <Text>{"\n"}</Text>
         <Highlighter
             scrollEnabled = {true}
@@ -163,10 +159,8 @@ let ChoseFile2 = useCallback(async () => {
             numberOfLines={10}
             style={styles.textBox}
             editable ={true}    
-            onChangeText = {()=>{text => setFileData1(text)
-                                setnumofLineFile1(fileData1.split("\n").length)
-                              }
-                            }
+            onChangeText = {text => setFileData1(text.toString())}
+            onChange={()=>{setnumofLineFile1(fileData1.split("\n").length)}}
         />
         <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
         <Text style={styles.filename}>Số chữ: </Text>
@@ -184,14 +178,8 @@ let ChoseFile2 = useCallback(async () => {
                       placeholder="Tìm kiếm"  
                       style={styles.textStyle2}  
                       editable ={true}
-                      onChangeText={text => setsearchWord2(text)
-                      }
-              />  
-              <Button
-                  style={{flexDirection: 'row', justifyContent: 'space-between'}}
-                  title="Tìm 🔎"
-                  onPress={setsearchWord2}
-              />
+                      onChangeText={text => setsearchWord2(text)}
+              /> 
           </View>
         <Text>{"\n"}</Text>
         <Highlighter
@@ -199,15 +187,13 @@ let ChoseFile2 = useCallback(async () => {
             textAlignVertical= 'top'
             highlightStyle={{backgroundColor: 'yellow'}}
             searchWords={[search_word2]}
-            textToHighlight= {fileData1}
+            textToHighlight= {fileData2}
             multiline = {true}
             numberOfLines={10}
             style={styles.textBox}
             editable ={true}
-            onChangeText = {()=>{text => setFileData2(text)
-                                numofLineFile2(fileData2.split("\n").length)
-                              }
-                            }
+            onChangeText = {text => setFileData2(text.toString())}
+            onChange={()=>{setnumofLineFile2(fileData2.split("\n").length)}}
         />
         <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
         <Text style={styles.filename}>Số chữ: </Text>
