@@ -2,38 +2,33 @@
  * @format
  */
 import {AppRegistry} from 'react-native';
+import {React,useCallback,useState } from 'react';
 import {name as appName} from './app.json';
-import { StyleSheet, Text, SafeAreaView, Button,ScrollView,ImageBackground,Alert,Image,View,TextInput } from 'react-native';
-import {React,useState,useCallback } from 'react';
-import { StatusBar } from 'expo-status-bar';
+import {StyleSheet, Text, SafeAreaView, Button,ScrollView,View,ImageBackground,Alert,Image,TextInput} from 'react-native';
+import {StatusBar} from 'expo-status-bar';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS  from 'react-native-fs'
 import Highlighter from './highlight.js';
+
 //////////////////////////////////////////////
 AppRegistry.registerComponent(appName, () => App);
 
-const logo = {
-    uri: 'https://reactnative.dev/img/tiny_logo.png',
-    width: 64,
-    height: 64,
-  };
-  const background = {
-    uri: 'https://images.pexels.com/photos/2310713/pexels-photo-2310713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-  };
+const logo = { uri: 'https://reactnative.dev/img/tiny_logo.png',width: 64, height: 64};
+const background = { uri: 'https://images.pexels.com/photos/2310713/pexels-photo-2310713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' };
   
-  const App = () =>{
+const App = () =>{
     ///set value
-    const [nameFile1, setnameFile1]= useState("Chọn File số 1");
-    const [nameFile2, setnameFile2]= useState("Chọn File số 2");
+    const [nameFile1, setnameFile1] = useState("Chọn File số 1");
+    const [nameFile2, setnameFile2] = useState("Chọn File số 2");
     const [fileData1, setFileData1] = useState("Text số 1");
     const [fileData2, setFileData2] = useState("Text số 2");
-    const[numofLineFile1,setnumofLineFile1]=useState(0);
-    const[numofLineFile2,setnumofLineFile2]=useState(0);
-    const [search_word1,setsearchWord1]=useState(); 
-    const [search_word2,setsearchWord2]=useState(); 
+    const[numofLineFile1,setnumofLineFile1] = useState(0);
+    const[numofLineFile2,setnumofLineFile2] = useState(0);
+    const [search_word1,setsearchWord1] = useState(); 
+    const [search_word2,setsearchWord2] = useState(); 
     ////////////////////////////////////////////////
     //////////////////// pick file ////////////////////////////////
-  let ChoseFile1 = useCallback(async () => {
+let ChoseFile1 = useCallback(async () => {
     try {
       let response1 = await DocumentPicker.pickSingle();
       setnameFile1(response1.name);
@@ -42,7 +37,7 @@ const logo = {
       console.warn(err);
     }
   }, []);
-  let ChoseFile2 = useCallback(async () => {
+let ChoseFile2 = useCallback(async () => {
     try {
       let response2 = await DocumentPicker.pickSingle();
       setnameFile2(response2.name);
