@@ -85,7 +85,16 @@ const logo = {
           />
           <Button
               title="Reset 🔑"
-              onPress={() => Alert.alert('Nút Reset đã được bấm')}
+              onPress={() => {
+                setnameFile1("Chọn file số 1")
+                setnameFile2("Chọn file số 2")
+                setFileData1("Text số 1")
+                setFileData2("Text số 2")
+                setnumofLineFile1("0")
+                setnumofLineFile2("0")
+                setsearchWord1("Tìm kiếm")
+                setsearchWord2("Tìm kiếm")
+              }}
           />
         </View>
   
@@ -151,15 +160,19 @@ const logo = {
               numberOfLines={10}
               style={styles.textStyle}
               editable ={true}    
-              onChangeText = {text => setFileData1(text)}
+              onChangeText = {()=>{text => setFileData1(text)
+                                  setnumofLineFile1(fileData1.split("\n").length)
+                                }
+                              }
           />
       <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
-      <Text style={styles.filename}>Số chữ: </Text>
+      {/* <Text style={styles.filename}>Số chữ: </Text> */}
   
       <Button
               title="Đổi vị trí 2 text"
-              onPress={() => Alert.alert('Nút đổi vị trí đã được bấm')}
+              onPress={() => Alert.alert("dell lam dc")}
           />
+
       <Text>{"\n"}</Text>
   
       <Text style={styles.filename2}>Text 2 📃</Text>
@@ -168,7 +181,8 @@ const logo = {
                   placeholder="Tìm kiếm"  
                   style={styles.textStyle2}  
                   editable ={true}
-                  onChangeText={text => setsearchWord2(text)}
+                  onChangeText={text => setsearchWord2(text)
+                  }
           />  
           {/* <Button
               style={{flexDirection: 'row', justifyContent: 'space-between'}}
@@ -192,10 +206,13 @@ const logo = {
               numberOfLines={10}
               style={styles.textStyle}
               editable ={true}
-              onChangeText = {text => setFileData2(text)}
+              onChangeText = {()=>{text => setFileData2(text)
+                                  fileData2(response.split("\n").length)
+                                }
+                              }
           />
       <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
-      <Text style={styles.filename}>Số chữ: </Text>
+      {/* <Text style={styles.filename}>Số chữ: </Text> */}
       </SafeAreaView>
   
       <Text>{"\n"}</Text>
