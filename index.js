@@ -51,16 +51,20 @@ const logo = {
     /////////////////////////////////////////////////
     //////read file
     let readFile1 = async (path) => {
-      let response = await RNFS.readFile(path);
-      setFileData1(response.toString()); //set the value of response to the fileData Hook.
-      setnumofLineFile1(response.toString().split("\n").length);
-      console.log(response.toString().split(" ").length);
+      let response = await (await RNFS.readFile(path)).toString();
+      while(response[response.length-1]=='\n'){
+        response=response.slice(0, -1);
+      }
+      setFileData1(response); //set the value of response to the fileData Hook.
+      setnumofLineFile1(response.split("\n").length);
     };
     let readFile2 = async (path) => {
-      let response = await RNFS.readFile(path);
-      // console.log(response.toString());
-      setnumofLineFile2(response.toString().split("\n").length);
-      setFileData2(response.toString()); //set the value of response to the fileData Hook.
+      let response = await (await RNFS.readFile(path)).toString();
+      while(response[response.length-1]=='\n'){
+        response=response.slice(0, -1);
+      }
+      setnumofLineFile2(response.split("\n").length);
+      setFileData2(response); //set the value of response to the fileData Hook.
     };
     /////////////////////////////////////////////////
     return (
