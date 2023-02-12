@@ -96,121 +96,119 @@ let ChoseFile2 = useCallback(async () => {
       <Text>{"\n"}</Text>
       <Text style={styles.normal}>Các cách thực hiện:</Text>
       <Text style={styles.unnormal}>- Chọn 2 file txt để so sánh{"\n"}
-                                  - Paste text vào 2 text box{"\n"}</Text>
-      <SafeAreaView style={styles.normal}>
+                                    - Paste text vào 2 text box{"\n"}</Text>
       
-      <Text style={styles.filename}>File 1 📁</Text>
-      <View style={styles.innerContainer}>  
-          <TextInput  
-                  placeholder = {nameFile1} 
-                  style={styles.textStyle}  
-                  editable ={false}
-          />  
-          <Button
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}
-              title="Chọn 📑"
-              onPress={ChoseFile1}
-          />
-      </View>
-  
-      <Text>{"\n"}</Text>
-      <Text style={styles.filename}>File 2 📁</Text>
-      <View style={styles.innerContainer}>  
-          <TextInput  
-                    placeholder={nameFile2}  
-                    style={styles.textStyle}
-                    editable ={false}  
-          />  
-          <Button
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}
-              title="Chọn 📑"
-              onPress={ChoseFile2}
-          />
-      </View>
+      <SafeAreaView style={styles.normal}>
+        <Text style={styles.filename}>File 1 📁</Text>
+        <View style={styles.innerContainer}>  
+            <TextInput  
+                    placeholder = {nameFile1} 
+                    style={styles.textStyle}  
+                    editable ={false}
+            />  
+            <Button
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}
+                title="Chọn 📑"
+                onPress={ChoseFile1}
+            />
+        </View>
+    
+        <Text>{"\n"}</Text>
+
+        <Text style={styles.filename}>File 2 📁</Text>
+        <View style={styles.innerContainer}>  
+            <TextInput  
+                      placeholder={nameFile2}  
+                      style={styles.textStyle}
+                      editable ={false}  
+            />  
+            <Button
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}
+                title="Chọn 📑"
+                onPress={ChoseFile2}
+            />
+        </View>
       </SafeAreaView>
   
       <Text>{"\n"}</Text>
       
       <Text style={styles.normal}>Text đã nhập 📖</Text>
-      <SafeAreaView style={styles.normal}>
-      <Text style={styles.filename2}>Text 1 📃</Text>
-      <View style={styles.innerContainer}>  
-          <TextInput  
-                  placeholder="Tìm kiếm"  
-                  style={styles.textStyle2} 
-                  onChangeText={text => setsearchWord1(text)}///////suwar
-          />  
-    
-          {/* <Button
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}
-              title="Tìm 🔎"
-              onPress={}
-          /> */}
-      </View>
-          <Highlighter
-              highlightStyle={{backgroundColor: 'yellow'}}
-              searchWords={[search_word1]}
-              textToHighlight= {fileData1}
-              multiline = {true}
-              numberOfLines={10}
-              style={styles.textStyle}
-              editable ={true}    
-              onChangeText = {()=>{text => setFileData1(text)
-                                  setnumofLineFile1(fileData1.split("\n").length)
-                                }
-                              }
-          />
-      <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
-      {/* <Text style={styles.filename}>Số chữ: </Text> */}
-  
-      <Button
-              title="Đổi vị trí 2 text"
-              onPress={() => Alert.alert("dell lam dc")}
-          />
 
-      <Text>{"\n"}</Text>
-  
-      <Text style={styles.filename2}>Text 2 📃</Text>
-      <View style={styles.innerContainer}>  
-          <TextInput  
-                  placeholder="Tìm kiếm"  
-                  style={styles.textStyle2}  
-                  editable ={true}
-                  onChangeText={text => setsearchWord2(text)
-                  }
-          />  
-          {/* <Button
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}
-              title="Tìm 🔎"
-              onPress={() => Alert.alert('Nút tìm kiếm đã được bấm')}
-          /> */}
-      </View>
-      {/* <TextInput  
-                  placeholder={fileData2} 
-                  style={styles.textBox} 
-                  multiline = {true}
-                  numberOfLines={10} 
-                  textAlignVertical= 'top'
-                  scrollEnabled = {true}
-          /> */}
-            <Highlighter
-              highlightStyle={{backgroundColor: 'yellow'}}
-              searchWords={[search_word2]}
-              textToHighlight= {fileData1}
-              multiline = {true}
-              numberOfLines={10}
-              style={styles.textStyle}
-              editable ={true}
-              onChangeText = {()=>{text => setFileData2(text)
-                                  numofLineFile2(fileData2.split("\n").length)
-                                }
+      <SafeAreaView style={styles.normal}>
+        <Text style={styles.filename2}>Text 1 📃</Text>
+          <View style={styles.innerContainer}>  
+              <TextInput  
+                      placeholder="Tìm kiếm"  
+                      style={styles.textStyle2} 
+                      onChangeText={text => setsearchWord1(text)}///////suwar
+              />  
+              <Button
+                  style={{flexDirection: 'row', justifyContent: 'space-between'}}
+                  title="Tìm 🔎"
+                  onPress={setsearchWord1}
+              />
+          </View>
+        <Highlighter
+            scrollEnabled = {true}
+            textAlignVertical= 'top'
+            highlightStyle={{backgroundColor: 'yellow'}}
+            searchWords={[search_word1]}
+            textToHighlight= {fileData1}
+            multiline = {true}
+            numberOfLines={10}
+            style={styles.textBox}
+            editable ={true}    
+            onChangeText = {()=>{text => setFileData1(text)
+                                setnumofLineFile1(fileData1.split("\n").length)
                               }
-          />
-      <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
-      {/* <Text style={styles.filename}>Số chữ: </Text> */}
+                            }
+        />
+        <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
+        <Text style={styles.filename}>Số chữ: </Text>
+    
+        <Button
+                title="Đổi vị trí 2 text"
+                onPress={() => Alert.alert("dell lam dc")}
+            />
+
+        <Text>{"\n"}</Text>
+    
+        <Text style={styles.filename2}>Text 2 📃</Text>
+          <View style={styles.innerContainer}>  
+              <TextInput  
+                      placeholder="Tìm kiếm"  
+                      style={styles.textStyle2}  
+                      editable ={true}
+                      onChangeText={text => setsearchWord2(text)
+                      }
+              />  
+              <Button
+                  style={{flexDirection: 'row', justifyContent: 'space-between'}}
+                  title="Tìm 🔎"
+                  onPress={setsearchWord2}
+              />
+          </View>
+        <Highlighter
+          scrollEnabled = {true}
+          textAlignVertical= 'top'
+          highlightStyle={{backgroundColor: 'yellow'}}
+          searchWords={[search_word2]}
+          textToHighlight= {fileData1}
+          multiline = {true}
+          numberOfLines={10}
+          style={styles.textBox}
+          editable ={true}
+          onChangeText = {()=>{text => setFileData2(text)
+                              numofLineFile2(fileData2.split("\n").length)
+                            }
+                          }
+        />
+        <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
+        <Text style={styles.filename}>Số chữ: </Text>
       </SafeAreaView>
   
       <Text>{"\n"}</Text>
+      
       
       <Text style={styles.normal}>Compare Text 📒📒</Text>
       <Text>{"\n"}</Text>
