@@ -8,6 +8,7 @@ import {React,useState,useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS  from 'react-native-fs'
+import Highlighter from './highlight.js';
 //////////////////////////////////////////////
 AppRegistry.registerComponent(appName, () => App);
 
@@ -28,8 +29,10 @@ const logo = {
     const [fileData2, setFileData2] = useState("Text số 2");
     const[numofLineFile1,setnumofLineFile1]=useState(0);
     const[numofLineFile2,setnumofLineFile2]=useState(0);
+    const [search_word1,setsearchWord1]=useState(); 
+    const [search_word2,setsearchWord2]=useState(); 
     ////////////////////////////////////////////////
-    /// pick file 
+    //////////////////// pick file ////////////////////////////////
   let ChoseFile1 = useCallback(async () => {
     try {
       let response1 = await DocumentPicker.pickSingle();
@@ -49,7 +52,7 @@ const logo = {
     }
   }, []);
     /////////////////////////////////////////////////
-    //////read file
+    /////////////////////read file///////////////////
     let readFile1 = async (path) => {
       let response = await (await RNFS.readFile(path)).toString();
       while(response[response.length-1]=='\n'){
@@ -130,22 +133,25 @@ const logo = {
       <View style={styles.innerContainer}>  
           <TextInput  
                   placeholder="Tìm kiếm"  
-                  style={styles.textStyle2}  
+                  style={styles.textStyle2} 
+                  onChangeText={text => setsearchWord1(text)}///////suwar
           />  
-          <Button
+    
+          {/* <Button
               style={{flexDirection: 'row', justifyContent: 'space-between'}}
               title="Tìm 🔎"
-              onPress={() => Alert.alert('Nút tìm kiếm 2 đã được bấm')}
-          />
+              onPress={}
+          /> */}
       </View>
-      <TextInput  
-                  placeholder={fileData1}  
-                  style={styles.textBox} 
-                  multiline = {true}
-                  numberOfLines={10} 
-                  textAlignVertical= 'top'
-                  scrollEnabled = {true}
-                  
+          <Highlighter
+              highlightStyle={{backgroundColor: 'yellow'}}
+              searchWords={[search_word1]}
+              textToHighlight= {fileData1}
+              multiline = {true}
+              numberOfLines={10}
+              style={styles.textStyle}
+              editable ={true}    
+              onChangeText = {text => setFileData1(text)}
           />
       <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
       <Text style={styles.filename}>Số chữ: </Text>
@@ -161,21 +167,32 @@ const logo = {
           <TextInput  
                   placeholder="Tìm kiếm"  
                   style={styles.textStyle2}  
-                  editable ={false}
+                  editable ={true}
+                  onChangeText={text => setsearchWord2(text)}
           />  
-          <Button
+          {/* <Button
               style={{flexDirection: 'row', justifyContent: 'space-between'}}
               title="Tìm 🔎"
               onPress={() => Alert.alert('Nút tìm kiếm đã được bấm')}
-          />
+          /> */}
       </View>
-      <TextInput  
+      {/* <TextInput  
                   placeholder={fileData2} 
                   style={styles.textBox} 
                   multiline = {true}
                   numberOfLines={10} 
                   textAlignVertical= 'top'
                   scrollEnabled = {true}
+          /> */}
+            <Highlighter
+              highlightStyle={{backgroundColor: 'yellow'}}
+              searchWords={[search_word2]}
+              textToHighlight= {fileData1}
+              multiline = {true}
+              numberOfLines={10}
+              style={styles.textStyle}
+              editable ={true}
+              onChangeText = {text => setFileData2(text)}
           />
       <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
       <Text style={styles.filename}>Số chữ: </Text>
