@@ -148,6 +148,7 @@ let ChoseFile2 = useCallback(async () => {
                   onPress={setsearchWord1}
               />
           </View>
+        <Text>{"\n"}</Text>
         <Highlighter
             scrollEnabled = {true}
             textAlignVertical= 'top'
@@ -188,20 +189,21 @@ let ChoseFile2 = useCallback(async () => {
                   onPress={setsearchWord2}
               />
           </View>
+        <Text>{"\n"}</Text>
         <Highlighter
-          scrollEnabled = {true}
-          textAlignVertical= 'top'
-          highlightStyle={{backgroundColor: 'yellow'}}
-          searchWords={[search_word2]}
-          textToHighlight= {fileData1}
-          multiline = {true}
-          numberOfLines={10}
-          style={styles.textBox}
-          editable ={true}
-          onChangeText = {()=>{text => setFileData2(text)
-                              numofLineFile2(fileData2.split("\n").length)
+            scrollEnabled = {true}
+            textAlignVertical= 'top'
+            highlightStyle={{backgroundColor: 'yellow'}}
+            searchWords={[search_word2]}
+            textToHighlight= {fileData1}
+            multiline = {true}
+            numberOfLines={10}
+            style={styles.textBox}
+            editable ={true}
+            onChangeText = {()=>{text => setFileData2(text)
+                                numofLineFile2(fileData2.split("\n").length)
+                              }
                             }
-                          }
         />
         <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
         <Text style={styles.filename}>Số chữ: </Text>
