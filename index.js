@@ -317,7 +317,34 @@ function MainScreen({ navigation }) {
 
   );
 }
-
+function HistoryScreen({ navigation }) {
+  return (
+    <ScrollView style={styles.container}>
+      <Text>{"\n"}</Text>
+      <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
+      <View style={styles.fixToText}>
+      <TextInput
+            scrollEnabled = {true}
+            textAlignVertical= 'top'
+            highlightStyle={{backgroundColor: 'yellow'}}
+            multiline = {true}
+            numberOfLines={1000}
+            style={styles.textBox}
+            editable ={false}
+        />
+        <TextInput
+            scrollEnabled = {true}
+            textAlignVertical= 'top'
+            highlightStyle={{backgroundColor: 'yellow'}}
+            multiline = {true}
+            numberOfLines={1000}
+            style={styles.textBox}
+            editable ={false}
+        />
+      </View>
+      </ScrollView>
+        );
+}
 function MyStack() {
   return (
     <Stack.Navigator 
@@ -334,6 +361,12 @@ function MyStack() {
       <Stack.Screen 
       name="Main" 
       component={MainScreen} 
+      screenOption = {{animationEnabled:true ,animationTypeForReplace: 'pop'}}
+      />
+
+      <Stack.Screen 
+      name="History" 
+      component={HistoryScreen} 
       screenOption = {{animationEnabled:true ,animationTypeForReplace: 'pop'}}
       />
     </Stack.Navigator>
