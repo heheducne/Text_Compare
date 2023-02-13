@@ -81,17 +81,17 @@ let readFile2 = async (path) => {
 function HomeScreen({ navigation }) {
   return (     
     <SafeAreaView style={styles.container1}>
+      <Text>{"\n"}</Text>
         <StatusBar barStyle="light-content" />
-        
-        
+    
         <KeyboardAvoidingView behavior='height' style={styles.container1}>
-          <Text style={styles.title2}>MỘT ỨNG DỤNG {"\n"}
-                                      CỦA TEAM DTDT</Text>
+          <Text style={styles.title3}>TEXT COMPARE</Text>
+          <Text style={styles.title}>MỘT ỨNG DỤNG {"\n"}
+                                        CỦA TEAM DTDT</Text>
           <Image  source={logo} style ={{alignSelf: 'center'}}/>
             <TouchableWithoutFeedback style={styles.container1} 
                     onPress={Keyboard.dismiss}>
                 <View style={styles.logoContainer}>
-                    
                     <View style={styles.infoContainer}>
                     <Text style={styles.title}>Account Information</Text>
                         <TextInput style={styles.input}
@@ -111,11 +111,10 @@ function HomeScreen({ navigation }) {
                             // ref={"txtPassword"}
                         />
                         <TouchableOpacity style={styles.buttonContainer}>
-                        <Button
+                            <Button
                               title="Bắt đầu"
                               onPress={() => navigation.navigate('Main')}
                             />
-                            <Text style={styles.buttonText}>SIGN IN</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -128,10 +127,11 @@ function HomeScreen({ navigation }) {
 function MainScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
+      <Text>{"\n"}</Text>
       <Button title="Go back" onPress={() => navigation.goBack()} />
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
         <Text>{"\n"}</Text>
-        <Text style={styles.title}>TEXT COMPARE APP</Text>
+        <Text style={styles.title1}>TEXT COMPARE APP</Text>
         {/* <Image  source={logo} style ={{justifyContent: 'center',alignSelf: 'center'}}/> */}
         <Text>{"\n"}</Text>
   
@@ -359,7 +359,7 @@ export default App;
       flex: 1,
       justifyContent: 'space-between',
     },
-    title: {
+    title1: {
       flex: 0.1,
       fontSize:32,
       color: 'black',
@@ -460,7 +460,7 @@ export default App;
       color: '#f7c744',
       fontSize: 18,
       textAlign: 'center',
-      marginTop: 5,
+      marginTop: 0,
       opacity: 0.9
   },
   infoContainer: {
@@ -480,14 +480,24 @@ export default App;
       paddingHorizontal: 10
   },
   buttonContainer: {
-      backgroundColor: '#f7c744',
-      paddingVertical: 15
+      // backgroundColor: '#f7c744',
+      paddingVertical: 2
   },
   buttonText: {
       textAlign: 'center',
       color :'rgb(32, 53, 70)',
       fontWeight: 'bold',
       fontSize: 18
-  }
+  },
+  title3: {
+    flex: 0.5,
+    fontSize:32,
+    color: 'yellow',
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginBottom:0,
+  },
   
   });
