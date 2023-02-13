@@ -83,42 +83,41 @@ function HomeScreen({ navigation }) {
     <SafeAreaView style={styles.container1}>
       <Text>{"\n"}</Text>
         <StatusBar barStyle="light-content" />
-    
         <KeyboardAvoidingView behavior='height' style={styles.container1}>
-          <Text style={styles.title3}>TEXT COMPARE</Text>
-          <Text style={styles.title}>MỘT ỨNG DỤNG {"\n"}
-                                        CỦA TEAM DTDT</Text>
+          <Text style={styles.title3}>TEXT COMPARE APP</Text>
+          <Text style={styles.title}>MỘT ỨNG DỤNG CỦA TEAM DTDT</Text>
           <Image  source={logo} style ={{alignSelf: 'center'}}/>
-            <TouchableWithoutFeedback style={styles.container1} 
-                    onPress={Keyboard.dismiss}>
-                <View style={styles.logoContainer}>
-                    <View style={styles.infoContainer}>
-                    <Text style={styles.title}>Account Information</Text>
-                        <TextInput style={styles.input}
-                            placeholder="Enter username/email"
-                            placeholderTextColor='rgba(255,255,255,0.8)'
-                            keyboardType='email-address'
-                            returnKeyType='next'
-                            //autoCorrect={false}
-                            // onSubmitEditing={()=> this.refs.txtPassword.focus()}
-                        />
-                        <TextInput style={styles.input} 
-                            placeholder="Enter password"
-                            placeholderTextColor='rgba(255,255,255,0.8)'
-                            returnKeyType='go'
-                            secureTextEntry
-                            //autoCorrect={false}
-                            // ref={"txtPassword"}
-                        />
-                        <TouchableOpacity style={styles.buttonContainer}>
-                            <Button
-                              title="Bắt đầu"
-                              onPress={() => navigation.navigate('Main')}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback style={styles.container1} 
+                  onPress={Keyboard.dismiss}>
+              <View style={styles.logoContainer}>
+                  <View style={styles.infoContainer}>
+                  <Text style={styles.title}>Thông tin tài khoản</Text>
+                      <TextInput style={styles.input}
+                          placeholder="Nhập username/email"
+                          placeholderTextColor='rgba(255,255,255,0.8)'
+                          keyboardType='email-address'
+                          returnKeyType='next'
+                          //autoCorrect={false}
+                          // onSubmitEditing={()=> this.refs.txtPassword.focus()}
+                      />
+                      <TextInput style={styles.input} 
+                          placeholder="Nhập password"
+                          placeholderTextColor='rgba(255,255,255,0.8)'
+                          returnKeyType='go'
+                          secureTextEntry
+                          //autoCorrect={false}
+                          // ref={"txtPassword"}
+                      />
+                      <TouchableOpacity style={styles.buttonContainer}>
+                          <Button
+                            title="Bắt đầu"
+                            color = "#f28482"
+                            onPress={() => navigation.navigate('Main')}
+                          />
+                      </TouchableOpacity>
+                  </View>
+              </View>
+          </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     </SafeAreaView> 
   );
@@ -128,20 +127,21 @@ function MainScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       <Text>{"\n"}</Text>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
         <Text>{"\n"}</Text>
-        <Text style={styles.title1}>TEXT COMPARE APP</Text>
-        {/* <Image  source={logo} style ={{justifyContent: 'center',alignSelf: 'center'}}/> */}
+        <Text style={styles.title3}>TEXT COMPARE APP</Text>
         <Text>{"\n"}</Text>
   
         <View style={styles.fixToText}>
           <Button
               title="Lịch sử 🔒"
+              color="#52b788"
               onPress={() => Alert.alert('Nút Lịch sử đã được bấm')}
           />
           <Button
               title="Reset 🔑"
+              color = "#d62828"
               onPress={() => {
                 setnameFile1("Chọn file số 1")
                 setnameFile2("Chọn file số 2")
@@ -170,6 +170,7 @@ function MainScreen({ navigation }) {
             />  
             <Button
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}
+                color="#f9c74f"
                 title="Chọn 📑"
                 onPress={ChoseFile1}
             />
@@ -187,6 +188,7 @@ function MainScreen({ navigation }) {
             <Button
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}
                 title="Chọn 📑"
+                color="#f9c74f"
                 onPress={ChoseFile2}
             />
         </View>
@@ -200,6 +202,7 @@ function MainScreen({ navigation }) {
         <Text style={styles.filename2}>Text 1 📃</Text>
           <View style={styles.innerContainer}>  
               <TextInput  
+                      padding={5}
                       placeholder="Tìm kiếm"  
                       style={styles.textStyle2} 
                       onChangeText={newtext => setsearchWord1(newtext)}
@@ -233,6 +236,7 @@ function MainScreen({ navigation }) {
         <Text style={styles.filename2}>Text 2 📃</Text>
           <View style={styles.innerContainer}>  
               <TextInput  
+                      padding={5}
                       placeholder="Tìm kiếm"  
                       style={styles.textStyle2}  
                       editable ={true}
@@ -423,7 +427,8 @@ export default App;
     textStyle2:{  
       width: "75%",  
       backgroundColor: "white", 
-      fontSize:10,
+      fontSize:8,
+      fontStyle:'italic'
       },
     fixToText: {
       flexDirection: 'row',
@@ -444,7 +449,7 @@ export default App;
     },
   container1: {
       flex: 1,
-      backgroundColor: 'rgb(32, 53, 70)',
+      backgroundColor: '#6b9080',
       flexDirection: 'column',
   },
   logoContainer: {
