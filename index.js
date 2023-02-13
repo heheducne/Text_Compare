@@ -4,10 +4,7 @@
 import {AppRegistry} from 'react-native';
 import {React,useCallback,useState,useRef } from 'react';
 import {name as appName} from './app.json';
-import {StyleSheet, Text, SafeAreaView, Button,ScrollView,View,ImageBackground,Alert,Image,TextInput,
-  TouchableWithoutFeedback,
- Keyboard, TouchableOpacity,
-  KeyboardAvoidingView} from 'react-native';
+import {StyleSheet, Text, SafeAreaView, Button,ScrollView,View,ImageBackground,Alert,Image,TextInput,TouchableWithoutFeedback,Keyboard, TouchableOpacity,KeyboardAvoidingView} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS  from 'react-native-fs'
@@ -134,11 +131,11 @@ function MainScreen({ navigation }) {
         <Text>{"\n"}</Text>
   
         <View style={styles.fixToText}>
-          <Button
+          {/* <Button
               title="Lịch sử 🔒"
               color="#52b788"
               onPress={() => Alert.alert('Nút Lịch sử đã được bấm')}
-          />
+          /> */}
           <Button
               title="Reset 🔑"
               color = "#d62828"
@@ -332,7 +329,6 @@ function MyStack() {
       name="Text Compare App" 
       component={HomeScreen} 
       screenOption = {{animationEnabled:true ,animationTypeForReplace: 'pop'}}
-      
       />
 
       <Stack.Screen 
@@ -343,110 +339,110 @@ function MyStack() {
     </Stack.Navigator>
   );
 }
-
+////////########## CHẠY #########//////////////
 return (
   <NavigationContainer>
     <MyStack />
   </NavigationContainer>
 );
-
 }
 
+/////########## EXPORT #########//////////////
 export default App;
   
   
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    image: {
-      flex: 1,
-      justifyContent: 'space-between',
-    },
-    title1: {
-      flex: 0.1,
-      fontSize:32,
-      color: 'black',
-      textAlign: 'center',
-      justifyContent: 'center',
-      fontWeight: 'bold',
-    },
-    normal:{
-      flex: 0.1,
-      fontSize:25,
-      color: 'black',
-      textAlign: 'left',
-      justifyContent: 'center',
-      fontWeight: 'bold',
-    },
-    filename2:{
-      flex: 0.1,
-      fontSize:15,
-      color: 'black',
-      textAlign: 'center',
-      justifyContent: 'center',
-      fontWeight: 'bold',
-    },
-    unnormal:{
-      flex: 0.1,
-      fontSize:20,
-      color: 'black',
-      textAlign: 'left',
-      justifyContent: 'center',
-      fontStyle:'italic'
-    },
-    title2: {
-      flex: 0.5,
-      fontSize:32,
-      color: 'black',
-      textAlign: 'center',
-      justifyContent: 'center',
-      fontWeight: 'bold',
-    },
-    filename:{
-      flex: 0.1,
-      fontSize:15,
-      color: 'black',
-      textAlign: 'left',
-      justifyContent: 'center',
-      fontWeight: 'bold',
-    },
-    innerContainer:{  
-      // flex: 1,  
-       width: "100%",  
-       flexDirection: "row",  
-       justifyContent: "space-between",  
-       alignItems: "center"  
-   },  
-   textStyle:{  
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  title1: {
+    flex: 0.1,
+    fontSize:32,
+    color: 'black',
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+  },
+  normal:{
+    flex: 0.1,
+    fontSize:25,
+    color: 'black',
+    textAlign: 'left',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+  },
+  filename2:{
+    flex: 0.1,
+    fontSize:15,
+    color: 'black',
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+  },
+  unnormal:{
+    flex: 0.1,
+    fontSize:20,
+    color: 'black',
+    textAlign: 'left',
+    justifyContent: 'center',
+    fontStyle:'italic'
+  },
+  title2: {
+    flex: 0.5,
+    fontSize:32,
+    color: 'black',
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+  },
+  filename:{
+    flex: 0.1,
+    fontSize:15,
+    color: 'black',
+    textAlign: 'left',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+  },
+  innerContainer:{  
+    // flex: 1,  
+      width: "100%",  
+      flexDirection: "row",  
+      justifyContent: "space-between",  
+      alignItems: "center"  
+  },  
+  textStyle:{  
+  width: "75%",  
+  backgroundColor: "white", 
+  fontSize:20,
+  ScrollView:true,
+  },  
+  textStyle2:{  
     width: "75%",  
     backgroundColor: "white", 
-    fontSize:20,
-    ScrollView:true,
-    },  
-    textStyle2:{  
-      width: "75%",  
-      backgroundColor: "white", 
-      fontSize:8,
-      fontStyle:'italic'
-      },
-    fixToText: {
-      flexDirection: 'row',
-      justifyContent:'space-between',
-      width:"100%"
+    fontSize:8,
+    fontStyle:'italic'
     },
-    fixToText2: {
-      flexDirection: 'column',
-      justifyContent:'space-between',
-      width:"100%"
-    },
-    textBox:{
-    padding: 1,
-    flex:1,
-    backgroundColor: "white", 
-    fontSize:10,
-    ScrollView:true,
-    },
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent:'space-between',
+    width:"100%"
+  },
+  fixToText2: {
+    flexDirection: 'column',
+    justifyContent:'space-between',
+    width:"100%"
+  },
+  textBox:{
+  padding: 1,
+  flex:1,
+  backgroundColor: "white", 
+  fontSize:10,
+  ScrollView:true,
+  },
   container1: {
       flex: 1,
       backgroundColor: '#6b9080',
@@ -504,5 +500,4 @@ export default App;
     alignSelf: 'center',
     marginBottom:0,
   },
-  
-  });
+});
