@@ -27,8 +27,9 @@ const App = () =>{
     const[numofLineFile2,setnumofLineFile2] = useState(0);
     const [search_word1,setsearchWord1] = useState(""); 
     const [search_word2,setsearchWord2] = useState(""); 
-    ////////////////////////////////////////////////
-    //////////////////// pick file ////////////////////////////////
+    ///////////////////////////////////////////////
+    //////////////////// pick file ////////////////
+
 let ChoseFile1 = useCallback(async () => {
     try {
       let response1 = await DocumentPicker.pickSingle();
@@ -38,6 +39,7 @@ let ChoseFile1 = useCallback(async () => {
       console.warn(err);
     }
   }, []);
+
 let ChoseFile2 = useCallback(async () => {
     try {
       let response2 = await DocumentPicker.pickSingle();
@@ -47,9 +49,10 @@ let ChoseFile2 = useCallback(async () => {
       console.warn(err);
     }
   }, []);
-    /////////////////////////////////////////////////
+
     /////////////////////read file///////////////////
-    let readFile1 = async (path) => {
+
+let readFile1 = async (path) => {
       let response = await (await RNFS.readFile(path)).toString();
       while(response[response.length-1]=='\n'){
         response=response.slice(0, -1);
@@ -57,7 +60,8 @@ let ChoseFile2 = useCallback(async () => {
       setFileData1(response); //set the value of response to the fileData Hook.
       setnumofLineFile1(response.split("\n").length);
     };
-    let readFile2 = async (path) => {
+
+let readFile2 = async (path) => {
       let response = await (await RNFS.readFile(path)).toString();
       while(response[response.length-1]=='\n'){
         response=response.slice(0, -1);
@@ -65,7 +69,9 @@ let ChoseFile2 = useCallback(async () => {
       setnumofLineFile2(response.split("\n").length);
       setFileData2(response); //set the value of response to the fileData Hook.
     };
+
     /////////////////////////////////////////////////
+    
     return (
       <NavigationContainer>
 
