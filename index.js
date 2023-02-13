@@ -21,8 +21,8 @@ const App = () =>{
     ///set value
     const [nameFile1, setnameFile1] = useState("Chọn File số 1");
     const [nameFile2, setnameFile2] = useState("Chọn File số 2");
-    const [fileData1, setFileData1] = useState("Text số 1");
-    const [fileData2, setFileData2] = useState("Text số 2");
+    const [fileData1, setFileData1] = useState("Text số 1");//////biến lưu dư liệu text 1
+    const [fileData2, setFileData2] = useState("Text số 2");//////biến lưu dữ liệu text 2
     const[numofLineFile1,setnumofLineFile1] = useState(0);
     const[numofLineFile2,setnumofLineFile2] = useState(0);
     const [search_word1,setsearchWord1] = useState(""); 
