@@ -20,60 +20,6 @@ const background = { uri: 'https://images.pexels.com/photos/2310713/pexels-photo
 const Stack = createNativeStackNavigator();  
 
 const App = () =>{
-
-    ///set value
-    const [nameFile1, setnameFile1] = useState("Chọn File số 1");
-    const [nameFile2, setnameFile2] = useState("Chọn File số 2");
-    const [fileData1, setFileData1] = useState("Text số 1");//////biến lưu dư liệu text 1
-    const [fileData2, setFileData2] = useState("Text số 2");//////biến lưu dữ liệu text 2
-    const[numofLineFile1,setnumofLineFile1] = useState(0);
-    const[numofLineFile2,setnumofLineFile2] = useState(0);
-    const [search_word1,setsearchWord1] = useState(""); 
-    const [search_word2,setsearchWord2] = useState("");
-    ///////////////////////////////////////////////
-    //////////////////// pick file ////////////////
-
-let ChoseFile1 = useCallback(async () => {
-    try {
-      let response1 = await DocumentPicker.pickSingle();
-      setnameFile1(response1.name);
-      readFile1(response1.uri);
-    } catch (err) {
-      console.warn(err);
-    }
-  }, []);
-
-let ChoseFile2 = useCallback(async () => {
-    try {
-      let response2 = await DocumentPicker.pickSingle();
-      setnameFile2(response2.name);
-      readFile2(response2.uri);
-    } catch (err) {
-      console.warn(err);
-    }
-  }, []);
-
-    /////////////////////read file///////////////////
-
-let readFile1 = async (path) => {
-      let response = await (await RNFS.readFile(path)).toString();
-      while(response[response.length-1]=='\n'){
-        response=response.slice(0, -1);
-      }
-      setFileData1(response); //set the value of response to the fileData Hook.
-      setnumofLineFile1(response.split("\n").length);
-    };
-
-let readFile2 = async (path) => {
-      let response = await (await RNFS.readFile(path)).toString();
-      while(response[response.length-1]=='\n'){
-        response=response.slice(0, -1);
-      }
-      setnumofLineFile2(response.split("\n").length);
-      setFileData2(response); //set the value of response to the fileData Hook.
-    };
-
-    /////////////////////////////////////////////////
 ///#########################  CÁC SCREENS  ###################################///
 function HomeScreen({ navigation }) {
   return (     
@@ -121,6 +67,72 @@ function HomeScreen({ navigation }) {
 }
 
 function MainScreen({ navigation }) {
+      ///set value
+      const [nameFile1, setnameFile1] = useState("Chọn File số 1");
+      const [nameFile2, setnameFile2] = useState("Chọn File số 2");
+      const [fileData1, setFileData1] = useState("Text số 1");//////biến lưu dư liệu text 1
+      const [fileData2, setFileData2] = useState("Text số 2");//////biến lưu dữ liệu text 2
+      const[numofLineFile1,setnumofLineFile1] = useState(0);
+      const[numofLineFile2,setnumofLineFile2] = useState(0);
+      const [search_word1,setsearchWord1] = useState(""); 
+      const [search_word2,setsearchWord2] = useState("");
+      const [numchar1,setnumchar1]= useState(0);
+      const [numchar2,setnumchar2]= useState(0);
+      ///////////////////////////////////////////////
+          //////////////////// pick file ////////////////
+
+let ChoseFile1 = useCallback(async () => {
+  try {
+    let response1 = await DocumentPicker.pickSingle();
+    setnameFile1(response1.name);
+    readFile1(response1.uri);
+  } catch (err) {
+    console.warn(err);
+  }
+}, []);
+
+let ChoseFile2 = useCallback(async () => {
+  try {
+    let response2 = await DocumentPicker.pickSingle();
+    setnameFile2(response2.name);
+    readFile2(response2.uri);
+  } catch (err) {
+    console.warn(err);
+  }
+}, []);
+
+  /////////////////////read file///////////////////
+
+let readFile1 = async (path) => {
+    let response = await (await RNFS.readFile(path)).toString();
+    while(response[response.length-1]=='\n'){
+      response=response.slice(0, -1);
+    }
+    setFileData1(response); //set the value of response to the fileData Hook.
+    setnumofLineFile1(response.split("\n").length);
+    setnumchar1(response.length);
+  };
+
+let readFile2 = async (path) => {
+    let response = await (await RNFS.readFile(path)).toString();
+    while(response[response.length-1]=='\n'){
+      response=response.slice(0, -1);
+    }
+    setnumofLineFile2(response.split("\n").length);
+    setnumchar2(response.length);
+    setFileData2(response); //set the value of response to the fileData Hook.
+  };
+  ////////////////////count char, line///////////////////
+
+let return1 = async (text)=>{
+  setnumofLineFile1(text.split("\n").length);
+  setnumchar1(text.length);
+}
+let return2 = async (text)=>{
+  setnumofLineFile2(text.split("\n").length);
+  setnumchar2(text.length);
+}
+  /////////////////////////////////////////////////
   return (
     <ScrollView style={styles.container}>
       <Text>{"\n"}</Text>
@@ -205,7 +217,7 @@ function MainScreen({ navigation }) {
                       onChangeText={newtext => setsearchWord1(newtext)}
               />  
           </View>
-
+        
         <Text>{"\n"}</Text>
         <Highlighter
             scrollEnabled = {true}
@@ -217,15 +229,15 @@ function MainScreen({ navigation }) {
             numberOfLines={10}
             style={styles.textBox}
             editable ={true}    
-            onChangeText = {text => setFileData1(text.toString())}
-            onChange={()=>{setnumofLineFile1(fileData1.split("\n").length)}}
+            onChangeText = {text => return1(text)}
         />
         <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
-        <Text style={styles.filename}>Số chữ: </Text>
+        <Text style={styles.filename}>Số chữ: {numchar1}</Text>
     
         <Button
                 title="Đổi vị trí 2 text"
                 onPress={() => Alert.alert("Nút switch đã đc bấm")}
+                // onPress={()=>{console.log(numofLineFile1)}}
             />
 
         <Text>{"\n"}</Text>
@@ -240,9 +252,8 @@ function MainScreen({ navigation }) {
                       onChangeText={text => setsearchWord2(text)}
               /> 
           </View>
-
-        <Text>{"\n"}</Text>
-
+         
+        <Text>{"\n"}</Text>   
         <Highlighter
             scrollEnabled = {true}
             textAlignVertical= 'top'
@@ -253,11 +264,10 @@ function MainScreen({ navigation }) {
             numberOfLines={10}
             style={styles.textBox}
             editable ={true}
-            onChangeText = {text => setFileData2(text.toString())}
-            onChange={()=>{setnumofLineFile2(fileData2.split("\n").length)}}
+            onChangeText = {text => return2(text)}
         />
         <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
-        <Text style={styles.filename}>Số chữ: </Text>
+        <Text style={styles.filename}>Số chữ: {numchar2}</Text>
       </SafeAreaView>
   
       <Text>{"\n"}</Text>
