@@ -134,7 +134,7 @@ function MainScreen({ navigation }) {
           <Button
               title="Lịch sử 🔒"
               color="#52b788"
-              onPress={() => Alert.alert('Nút Lịch sử đã được bấm')}
+              onPress={() => navigation.navigate('History')}
           />
           <Button
               title="Reset 🔑"
