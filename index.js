@@ -2,9 +2,12 @@
  * @format
  */
 import {AppRegistry} from 'react-native';
-import {React,useCallback,useState } from 'react';
+import {React,useCallback,useState,useRef } from 'react';
 import {name as appName} from './app.json';
-import {StyleSheet, Text, SafeAreaView, Button,ScrollView,View,ImageBackground,Alert,Image,TextInput} from 'react-native';
+import {StyleSheet, Text, SafeAreaView, Button,ScrollView,View,ImageBackground,Alert,Image,TextInput,
+  TouchableWithoutFeedback,
+ Keyboard, TouchableOpacity,
+  KeyboardAvoidingView} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS  from 'react-native-fs'
@@ -76,27 +79,56 @@ let readFile2 = async (path) => {
     /////////////////////////////////////////////////
 ///#########################  CÁC SCREENS  ###################################///
 function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={styles.title2}>MỘT ỨNG DỤNG {"\n"}
-                                CỦA TEAM DTDT</Text>  
-
-        <Image  source={logo} style ={{justifyContent: 'center',alignSelf: 'center'}}/>
-
-        <Text>{"\n"}</Text> 
-
-        <Button
-        title="Bắt đầu"
-        onPress={() => navigation.navigate('Main')}
-      />
-    </View>
+  return (     
+    <SafeAreaView style={styles.container1}>
+        <StatusBar barStyle="light-content" />
+        
+        
+        <KeyboardAvoidingView behavior='height' style={styles.container1}>
+          <Text style={styles.title2}>MỘT ỨNG DỤNG {"\n"}
+                                      CỦA TEAM DTDT</Text>
+          <Image  source={logo} style ={{alignSelf: 'center'}}/>
+            <TouchableWithoutFeedback style={styles.container1} 
+                    onPress={Keyboard.dismiss}>
+                <View style={styles.logoContainer}>
+                    
+                    <View style={styles.infoContainer}>
+                    <Text style={styles.title}>Account Information</Text>
+                        <TextInput style={styles.input}
+                            placeholder="Enter username/email"
+                            placeholderTextColor='rgba(255,255,255,0.8)'
+                            keyboardType='email-address'
+                            returnKeyType='next'
+                            //autoCorrect={false}
+                            // onSubmitEditing={()=> this.refs.txtPassword.focus()}
+                        />
+                        <TextInput style={styles.input} 
+                            placeholder="Enter password"
+                            placeholderTextColor='rgba(255,255,255,0.8)'
+                            returnKeyType='go'
+                            secureTextEntry
+                            //autoCorrect={false}
+                            // ref={"txtPassword"}
+                        />
+                        <TouchableOpacity style={styles.buttonContainer}>
+                        <Button
+                              title="Bắt đầu"
+                              onPress={() => navigation.navigate('Main')}
+                            />
+                            <Text style={styles.buttonText}>SIGN IN</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+    </SafeAreaView> 
   );
 }
 
 function MainScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
-      {/* <Button title="Go back" onPress={() => navigation.goBack()} /> */}
+      <Button title="Go back" onPress={() => navigation.goBack()} />
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
         <Text>{"\n"}</Text>
         <Text style={styles.title}>TEXT COMPARE APP</Text>
@@ -287,11 +319,16 @@ function MainScreen({ navigation }) {
 
 function MyStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator 
+    screenOptions={{
+      headerShown: false
+    }}
+    >
       <Stack.Screen 
       name="Text Compare App" 
       component={HomeScreen} 
       screenOption = {{animationEnabled:true ,animationTypeForReplace: 'pop'}}
+      
       />
 
       <Stack.Screen 
@@ -405,5 +442,52 @@ export default App;
     fontSize:10,
     ScrollView:true,
     },
+  container1: {
+      flex: 1,
+      backgroundColor: 'rgb(32, 53, 70)',
+      flexDirection: 'column',
+  },
+  logoContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1
+  },
+  logo: {
+      width: 128,
+      height: 56,
+  },
+  title: {
+      color: '#f7c744',
+      fontSize: 18,
+      textAlign: 'center',
+      marginTop: 5,
+      opacity: 0.9
+  },
+  infoContainer: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: 200,
+      padding: 20,
+      //backgroundColor: 'red'
+  },
+  input: {
+      height: 40,
+      backgroundColor: 'rgba(255,255,255,0.2)',
+      color: '#FFF',
+      marginBottom: 20,
+      paddingHorizontal: 10
+  },
+  buttonContainer: {
+      backgroundColor: '#f7c744',
+      paddingVertical: 15
+  },
+  buttonText: {
+      textAlign: 'center',
+      color :'rgb(32, 53, 70)',
+      fontWeight: 'bold',
+      fontSize: 18
+  }
   
   });
