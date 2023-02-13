@@ -131,11 +131,11 @@ function MainScreen({ navigation }) {
         <Text>{"\n"}</Text>
   
         <View style={styles.fixToText}>
-          {/* <Button
+          <Button
               title="Lịch sử 🔒"
               color="#52b788"
               onPress={() => Alert.alert('Nút Lịch sử đã được bấm')}
-          /> */}
+          />
           <Button
               title="Reset 🔑"
               color = "#d62828"
