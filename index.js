@@ -10,14 +10,17 @@ import DocumentPicker from 'react-native-document-picker';
 import RNFS  from 'react-native-fs'
 import Highlighter from './highlight.js';
 import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 //////////////////////////////////////////////
 AppRegistry.registerComponent(appName, () => App);
 
 const logo = { uri: 'https://reactnative.dev/img/tiny_logo.png',width: 64, height: 64};
 const background = { uri: 'https://images.pexels.com/photos/2310713/pexels-photo-2310713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' };
-  
+const Stack = createNativeStackNavigator();  
+
 const App = () =>{
+
     ///set value
     const [nameFile1, setnameFile1] = useState("Chọn File số 1");
     const [nameFile2, setnameFile2] = useState("Chọn File số 2");
@@ -26,7 +29,7 @@ const App = () =>{
     const[numofLineFile1,setnumofLineFile1] = useState(0);
     const[numofLineFile2,setnumofLineFile2] = useState(0);
     const [search_word1,setsearchWord1] = useState(""); 
-    const [search_word2,setsearchWord2] = useState(""); 
+    const [search_word2,setsearchWord2] = useState("");
     ///////////////////////////////////////////////
     //////////////////// pick file ////////////////
 
@@ -71,16 +74,33 @@ let readFile2 = async (path) => {
     };
 
     /////////////////////////////////////////////////
-    
-    return (
-      <NavigationContainer>
+///#########################  CÁC SCREENS  ###################################///
+function HomeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={styles.title2}>MỘT ỨNG DỤNG {"\n"}
+                                CỦA TEAM DTDT</Text>  
 
-        
-      <ScrollView style={styles.container}>
+        <Image  source={logo} style ={{justifyContent: 'center',alignSelf: 'center'}}/>
+
+        <Text>{"\n"}</Text> 
+
+        <Button
+        title="Bắt đầu"
+        onPress={() => navigation.navigate('Main')}
+      />
+    </View>
+  );
+}
+
+function MainScreen({ navigation }) {
+  return (
+    <ScrollView style={styles.container}>
+      {/* <Button title="Go back" onPress={() => navigation.goBack()} /> */}
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
         <Text>{"\n"}</Text>
         <Text style={styles.title}>TEXT COMPARE APP</Text>
-        <Image  source={logo} style ={{justifyContent: 'center',alignSelf: 'center'}}/>
+        {/* <Image  source={logo} style ={{justifyContent: 'center',alignSelf: 'center'}}/> */}
         <Text>{"\n"}</Text>
   
         <View style={styles.fixToText}>
@@ -173,7 +193,7 @@ let readFile2 = async (path) => {
     
         <Button
                 title="Đổi vị trí 2 text"
-                onPress={() => Alert.alert("dell lam dc")}
+                onPress={() => Alert.alert("Nút switch đã đc bấm")}
             />
 
         <Text>{"\n"}</Text>
@@ -187,7 +207,9 @@ let readFile2 = async (path) => {
                       onChangeText={text => setsearchWord2(text)}
               /> 
           </View>
+
         <Text>{"\n"}</Text>
+
         <Highlighter
             scrollEnabled = {true}
             textAlignVertical= 'top'
@@ -209,19 +231,25 @@ let readFile2 = async (path) => {
       
       
       <Text style={styles.normal}>Compare Text 📒📒</Text>
+
       <Text>{"\n"}</Text>
+
       <SafeAreaView>
-      <View style={styles.fixToText2}>
-          <Button
-              title="So sánh và hiện tất cả"
-              onPress={() => Alert.alert('Nút show all được bấm')}
-          />
-          <Text>{"\n"}</Text>
-          <Button
-              title="So sánh và hiện điểm khác biệt"
-              onPress={() => Alert.alert('Nút show only differences đã được bấm')}
-          />
-          <Text>{"\n"}</Text>
+        <View style={styles.fixToText2}>
+            <Button
+                title="So sánh và hiện tất cả"
+                onPress={() => Alert.alert('Nút show all được bấm')}
+            />
+
+            <Text>{"\n"}</Text>
+
+            <Button
+                title="So sánh và hiện điểm khác biệt"
+                onPress={() => Alert.alert('Nút show only differences đã được bấm')}
+            />
+
+            <Text>{"\n"}</Text>
+
         </View>
         <Text style={styles.filename2}>Text 1 📃</Text>
         <TextInput  
@@ -233,7 +261,8 @@ let readFile2 = async (path) => {
                     editable={false}
                     scrollEnabled = {true}
             />
-          <Text>{"\n"}</Text>
+        
+        <Text>{"\n"}</Text>
   
         <Text style={styles.filename2}>Text 2 📃</Text>
         <TextInput  
@@ -252,12 +281,38 @@ let readFile2 = async (path) => {
         <StatusBar style="auto" />
       </ImageBackground>
       </ScrollView>
-    
-      </NavigationContainer>
-    );
-  }
+
+  );
+}
+
+function MyStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+      name="Text Compare App" 
+      component={HomeScreen} 
+      screenOption = {{animationEnabled:true ,animationTypeForReplace: 'pop'}}
+      />
+
+      <Stack.Screen 
+      name="Main" 
+      component={MainScreen} 
+      screenOption = {{animationEnabled:true ,animationTypeForReplace: 'pop'}}
+      />
+    </Stack.Navigator>
+  );
+}
+
+return (
+  <NavigationContainer>
+    <MyStack />
+  </NavigationContainer>
+);
+
+}
+
+export default App;
   
-  export default App;
   
   const styles = StyleSheet.create({
     container: {
@@ -298,6 +353,14 @@ let readFile2 = async (path) => {
       textAlign: 'left',
       justifyContent: 'center',
       fontStyle:'italic'
+    },
+    title2: {
+      flex: 0.5,
+      fontSize:32,
+      color: 'black',
+      textAlign: 'center',
+      justifyContent: 'center',
+      fontWeight: 'bold',
     },
     filename:{
       flex: 0.1,
