@@ -76,8 +76,8 @@ function MainScreen({ navigation }) {
       const[numofLineFile2,setnumofLineFile2] = useState(0);
       const [search_word1,setsearchWord1] = useState(""); 
       const [search_word2,setsearchWord2] = useState("");
-      const [numchar1,setnumchar1]= useState(0);
-      const [numchar2,setnumchar2]= useState(0);
+      const [numchar1,setnumchar1]= useState("t dell biet lam");
+      const [numchar2,setnumchar2]= useState("t dell biet lam");
       ///////////////////////////////////////////////
           //////////////////// pick file ////////////////
 
@@ -109,7 +109,7 @@ let readFile1 = async (path) => {
       response=response.slice(0, -1);
     }
     setFileData1(response); //set the value of response to the fileData Hook.
-    setnumofLineFile1(response.split("\n").length);
+    // setnumofLineFile1(response.split("\n").length);
     setnumchar1(response.length);
   };
 
@@ -119,18 +119,24 @@ let readFile2 = async (path) => {
       response=response.slice(0, -1);
     }
     setnumofLineFile2(response.split("\n").length);
-    setnumchar2(response.length);
+    // setnumchar2(response.length);
     setFileData2(response); //set the value of response to the fileData Hook.
   };
   ////////////////////count char, line///////////////////
 
 let return1 = async (text)=>{
+  while(text[text.length-1]=='\n'){
+    text=text.slice(0, -1);
+  }
   setnumofLineFile1(text.split("\n").length);
-  setnumchar1(text.length);
+  // setnumchar1(text.split(" ").length);
 }
 let return2 = async (text)=>{
+  while(text[text.length-1]=='\n'){
+    text=text.slice(0, -1);
+  }
   setnumofLineFile2(text.split("\n").length);
-  setnumchar2(text.length);
+  // setnumchar2(text.split(" ").length);
 }
   /////////////////////////////////////////////////
   return (
