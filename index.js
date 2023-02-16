@@ -129,6 +129,7 @@ let return1 = async (text)=>{
     text=text.slice(0, -1);
   }
   setnumofLineFile1(text.split("\n").length);
+  setFileData1(text);
   // setnumchar1(text.split(" ").length);
 }
 let return2 = async (text)=>{
@@ -136,6 +137,7 @@ let return2 = async (text)=>{
     text=text.slice(0, -1);
   }
   setnumofLineFile2(text.split("\n").length);
+  setFileData2(text);
   // setnumchar2(text.split(" ").length);
 }
   /////////////////////////////////////////////////
@@ -243,7 +245,7 @@ let return2 = async (text)=>{
         <Button
                 title="Đổi vị trí 2 text"
                 onPress={() => Alert.alert("Nút switch đã đc bấm")}
-                // onPress={()=>{console.log(numofLineFile1)}}
+                // onPress={()=>{console.log(fileData1)}}
             />
 
         <Text>{"\n"}</Text>
