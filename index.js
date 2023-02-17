@@ -11,6 +11,9 @@ import RNFS from 'react-native-fs'
 import Highlighter from './highlight.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 //////////////////////////////////////////////
 AppRegistry.registerComponent(appName, () => App);
@@ -18,42 +21,78 @@ AppRegistry.registerComponent(appName, () => App);
 const logo = { uri: 'https://reactnative.dev/img/tiny_logo.png', width: 64, height: 64 };
 const background = { uri: 'https://images.pexels.com/photos/2310713/pexels-photo-2310713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' };
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   const [name, setName] = useState(" ");
   ///#########################  CÁC SCREENS  ###################################///
   function HomeScreen({ navigation }) {
     return (
-      <SafeAreaView style={styles.container1}>
-        <Text>{"\n"}</Text>
-        <StatusBar barStyle="light-content" />
-        <KeyboardAvoidingView behavior='height' style={styles.container1}>
-          <Text style={styles.title3}>TEXT COMPARE APP</Text>
-          <Text style={styles.title}>MỘT ỨNG DỤNG CỦA TEAM DTDT</Text>
-          <Image source={logo} style={{ alignSelf: 'center' }} />
-          <TouchableWithoutFeedback style={styles.container2}
-            onPress={Keyboard.dismiss}>
-            <View style={styles.logoContainer}>
-              <View style={styles.infoContainer}>
-                <Text style={styles.title}>Thông tin người dùng</Text>
-                <TextInput style={styles.input}
-                  placeholder="Nhập tên của bạn"
-                  placeholderTextColor='rgba(255,255,255,0.8)'
-                  onChangeText={value => setName(value)}
-                  returnKeyType='next'
-                />
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Button
-                    title="Bắt đầu"
-                    color="#f28482"
-                    onPress={() => navigation.navigate('Main')}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
+      // <SafeAreaView style={styles.container1}>
+      //   <Text>{"\n"}</Text>
+      //   <StatusBar barStyle="light-content" />
+      //   <KeyboardAvoidingView behavior='height' style={styles.container1}>
+      //     <Text style={styles.title3}>TEXT COMPARE APP</Text>
+      //     <Text style={styles.title}>MỘT ỨNG DỤNG CỦA TEAM DTDT</Text>
+      //     <Image source={logo} style={{ alignSelf: 'center' }} />
+      //     <TouchableWithoutFeedback style={styles.container2}
+      //       onPress={Keyboard.dismiss}>
+      //       <View style={styles.logoContainer}>
+      //         <View style={styles.infoContainer}>
+      //           <Text style={styles.title}>Thông tin người dùng</Text>
+      //           <TextInput style={styles.input}
+      //             placeholder="Nhập tên của bạn"
+      //             placeholderTextColor='rgba(255,255,255,0.8)'
+      //             onChangeText={value => setName(value)}
+      //             returnKeyType='next'
+      //           />
+      //           <TouchableOpacity style={styles.buttonContainer}>
+      //             <Button
+      //               title="Bắt đầu"
+      //               color="#f28482"
+      //               onPress={() => navigation.navigate('Main')}
+      //             />
+      //           </TouchableOpacity>
+      //         </View>
+      //       </View>
+      //     </TouchableWithoutFeedback>
+      //   </KeyboardAvoidingView>
+      // </SafeAreaView>
+      <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName={homeName}
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            let rn = route.name;
+
+            if (rn === homeName) {
+              iconName = focused ? 'home' : 'home-outline';
+
+            } else if (rn === detailsName) {
+              iconName = focused ? 'list' : 'list-outline';
+
+            } else if (rn === settingsName) {
+              iconName = focused ? 'settings' : 'settings-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'grey',
+          labelStyle: { paddingBottom: 10, fontSize: 10 },
+          style: { padding: 10, height: 70}
+        }}>
+
+        <Tab.Screen name={homeName} component={HomeScreen} />
+        <Tab.Screen name={detailsName} component={DetailsScreen} />
+        <Tab.Screen name={settingsName} component={SettingsScreen} />
+
+      </Tab.Navigator>
+    </NavigationContainer>
     );
   }
   state = {
