@@ -347,6 +347,10 @@ const App = () => {
 
     );
   }
+  const ClickHistoryButton = () => { 
+    const [clickHistory, setClickHistory] = useState([]); 
+    const handleClick = () => { setClickHistory([...clickHistory, new Date().toISOString()]); }; 
+    return ( <button onPress={handleClick}> {clickHistory.length > 0 ? `Clicked ${clickHistory.length} times` : 'Click me'} </button> ); };
   function HistoryScreen({ navigation }) {
     return (
       <ScrollView style={styles.container}>
