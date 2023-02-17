@@ -297,7 +297,7 @@ let return2 = async (text)=>{
         </View>
         <Text style={styles.filename2}>Text 1 📃</Text>
         <TextInput  
-                    placeholder="Text số 1"  
+                    placeholder={fileData1} 
                     style={styles.textBox} 
                     multiline = {true}
                     numberOfLines={10} 
