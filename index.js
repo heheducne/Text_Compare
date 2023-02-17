@@ -149,9 +149,14 @@ const App = () => {
       setFileData2(text);
       // setnumchar2(text.split(" ").length);
     }
-    function SwapText(){
+    function SwapText() {
       setFileData1(fileData2);
       setFileData2(fileData1);
+    }
+
+    function Compare() {
+      setFileData3(fileData1);
+      setFileData4(fileData2);
     }
     /////////////////////////////////////////////////
     return (
@@ -309,7 +314,7 @@ const App = () => {
             <View style={styles.fixToText2}>
               <Button
                 title="So sánh và hiện tất cả"
-                onPress={() => Alert.alert('Nút show all được bấm')}
+                onPress={() => Compare()}
               />
 
               <Text>{"\n"}</Text>
@@ -324,7 +329,7 @@ const App = () => {
               textAlignVertical='top'
               editable={false}
               scrollEnabled={true}
-
+              value={fileData3}
             />
 
             <Text>{"\n"}</Text>
@@ -348,6 +353,10 @@ const App = () => {
 
     );
   }
+  const ClickHistoryButton = () => { 
+    const [clickHistory, setClickHistory] = useState([]); 
+    const handleClick = () => { setClickHistory([...clickHistory, new Date().toISOString()]); }; 
+    return ( <button onPress={handleClick}> {clickHistory.length > 0 ? `Clicked ${clickHistory.length} times` : 'Click me'} </button> ); };
   function HistoryScreen({ navigation }) {
     return (
       <ScrollView style={styles.container}>
