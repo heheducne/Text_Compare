@@ -87,8 +87,6 @@ const App = () => {
     const [search_word2, setsearchWord2] = useState(" ");
     const [text_result1, setText1] = useState("");
     const [text_result2, setText2] = useState("");
-    const [numchar1, setnumchar1] = useState("t dell biet lam");
-    const [numchar2, setnumchar2] = useState("t dell biet lam");
     const [fileData3, setFileData3] = useState("Text số 3");
     ///////////////////////////////////////////////
     //////////////////// pick file ////////////////
@@ -256,7 +254,6 @@ const App = () => {
               onChangeText={text => return1(text)}
             />
             <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
-            <Text style={styles.filename}>Số chữ: {numchar1}</Text>
 
             <Button
               title="Đổi vị trí 2 text"
@@ -292,7 +289,6 @@ const App = () => {
 
             />
             <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
-            <Text style={styles.filename}>Số chữ: {numchar2}</Text>
           </SafeAreaView>
 
           <Text>{"\n"}</Text>
@@ -337,7 +333,6 @@ const App = () => {
               editable={false}
               scrollEnabled={true}
             />
-            <Text style={styles.filename}>Khác biệt ở dòng thứ: </Text>
             <Text style={styles.filename}>Số chữ khác biệt: </Text>
           </SafeAreaView>
 
