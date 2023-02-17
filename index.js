@@ -85,9 +85,8 @@ const App = () => {
     const [numofLineFile2, setnumofLineFile2] = useState(0);
     const [search_word1, setsearchWord1] = useState(" ");
     const [search_word2, setsearchWord2] = useState(" ");
-    const [text_result1, setText1] = useState("");
-    const [text_result2, setText2] = useState("");
     const [fileData3, setFileData3] = useState("Text số 3");
+    const [fileData4, setFileData4] = useState("Text số 4");
     ///////////////////////////////////////////////
     //////////////////// pick file ////////////////
 
