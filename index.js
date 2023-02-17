@@ -20,7 +20,7 @@ const background = { uri: 'https://images.pexels.com/photos/2310713/pexels-photo
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState(" ");
   ///#########################  CÁC SCREENS  ###################################///
   function HomeScreen({ navigation }) {
     return (
@@ -31,7 +31,7 @@ const App = () => {
           <Text style={styles.title3}>TEXT COMPARE APP</Text>
           <Text style={styles.title}>MỘT ỨNG DỤNG CỦA TEAM DTDT</Text>
           <Image source={logo} style={{ alignSelf: 'center' }} />
-          <TouchableWithoutFeedback style={styles.container1}
+          <TouchableWithoutFeedback style={styles.container2}
             onPress={Keyboard.dismiss}>
             <View style={styles.logoContainer}>
               <View style={styles.infoContainer}>
@@ -521,10 +521,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#6b9080',
     flexDirection: 'column',
   },
+  container2: {
+    flex: 0.5,
+    backgroundColor: '#6b9080',
+    flexDirection: 'column',
+  },
   logoContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1
+    flex: 1,
   },
   logo: {
     width: 128,
@@ -538,7 +543,7 @@ const styles = StyleSheet.create({
     opacity: 0.9
   },
   infoContainer: {
-    position: 'absolute',
+    //position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
