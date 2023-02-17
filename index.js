@@ -153,6 +153,11 @@ const App = () => {
       setFileData1(fileData2);
       setFileData2(fileData1);
     }
+
+    function Compare() {
+      setFileData3(fileData1);
+      setFileData4(fileData2);
+    }
     /////////////////////////////////////////////////
     return (
       <ScrollView style={styles.container}>
@@ -302,7 +307,7 @@ const App = () => {
             <View style={styles.fixToText2}>
               <Button
                 title="So sánh và hiện tất cả"
-                onPress={() => Alert.alert('Nút show all được bấm')}
+                onPress={() => Compare()}
               />
 
               <Text>{"\n"}</Text>
@@ -317,7 +322,7 @@ const App = () => {
               textAlignVertical='top'
               editable={false}
               scrollEnabled={true}
-
+              value={fileData3}
             />
 
             <Text>{"\n"}</Text>
