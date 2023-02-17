@@ -24,77 +24,50 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
-  const [name, setName] = useState(" ");
+  
   ///#########################  CÁC SCREENS  ###################################///
+
   function HomeScreen({ navigation }) {
-    return (
-      // <SafeAreaView style={styles.container1}>
-      //   <Text>{"\n"}</Text>
-      //   <StatusBar barStyle="light-content" />
-      //   <KeyboardAvoidingView behavior='height' style={styles.container1}>
-      //     <Text style={styles.title3}>TEXT COMPARE APP</Text>
-      //     <Text style={styles.title}>MỘT ỨNG DỤNG CỦA TEAM DTDT</Text>
-      //     <Image source={logo} style={{ alignSelf: 'center' }} />
-      //     <TouchableWithoutFeedback style={styles.container2}
-      //       onPress={Keyboard.dismiss}>
-      //       <View style={styles.logoContainer}>
-      //         <View style={styles.infoContainer}>
-      //           <Text style={styles.title}>Thông tin người dùng</Text>
-      //           <TextInput style={styles.input}
-      //             placeholder="Nhập tên của bạn"
-      //             placeholderTextColor='rgba(255,255,255,0.8)'
-      //             onChangeText={value => setName(value)}
-      //             returnKeyType='next'
-      //           />
-      //           <TouchableOpacity style={styles.buttonContainer}>
-      //             <Button
-      //               title="Bắt đầu"
-      //               color="#f28482"
-      //               onPress={() => navigation.navigate('Main')}
-      //             />
-      //           </TouchableOpacity>
-      //         </View>
-      //       </View>
-      //     </TouchableWithoutFeedback>
-      //   </KeyboardAvoidingView>
-      // </SafeAreaView>
-      <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName={homeName}
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            let rn = route.name;
-
-            if (rn === homeName) {
-              iconName = focused ? 'home' : 'home-outline';
-
-            } else if (rn === detailsName) {
-              iconName = focused ? 'list' : 'list-outline';
-
-            } else if (rn === settingsName) {
-              iconName = focused ? 'settings' : 'settings-outline';
-            }
-
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-        })}
-        tabBarOptions={{
-          activeTintColor: 'tomato',
-          inactiveTintColor: 'grey',
-          labelStyle: { paddingBottom: 10, fontSize: 10 },
-          style: { padding: 10, height: 70}
-        }}>
-
-        <Tab.Screen name={homeName} component={HomeScreen} />
-        <Tab.Screen name={detailsName} component={DetailsScreen} />
-        <Tab.Screen name={settingsName} component={SettingsScreen} />
-
-      </Tab.Navigator>
-    </NavigationContainer>
+    const [name, setName] = useState(" ");
+    return(
+      <SafeAreaView style={styles.container1}>
+        <Text>{"\n"}</Text>
+        <StatusBar barStyle="light-content" />
+        <KeyboardAvoidingView behavior='height' style={styles.container1}>
+          <Text style={styles.title3}>TEXT COMPARE APP</Text>
+          <Text style={styles.title}>MỘT ỨNG DỤNG CỦA TEAM DTDT</Text>
+          <Image source={logo} style={{ alignSelf: 'center' }} />
+          <TouchableWithoutFeedback style={styles.container2}
+            //onPress={Keyboard.dismiss}
+            >
+            <View style={styles.logoContainer}>
+              <View style={styles.infoContainer}>
+                <Text style={styles.title}>Thông tin người dùng</Text>
+                <TextInput style={styles.input}
+                  placeholder="Nhập tên của bạn"
+                  placeholderTextColor='rgba(255,255,255,0.8)'
+                  onChangeText={value => setName(name)}
+                  returnKeyType='next'
+                  //blurOnSubmit={false}
+                />
+                {/* <ScrollView keyboardDismissMode='none' scrollEnabled={false}> */}
+                <TouchableOpacity style={styles.buttonContainer}>
+                  <Button
+                    title="Bắt đầu"
+                    color="#f28482"
+                    onPress={() => navigation.navigate('Main')}
+                  />
+                </TouchableOpacity>
+                {/* </ScrollView> */}
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
     );
+    
   }
+
   state = {
     TextInputValue: '', // for onChangeText handler
     newText: '', // for button onClick handler
@@ -194,7 +167,7 @@ const App = () => {
         <Text>{"\n"}</Text>
         <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
-          <Text>Người dùng: {name}</Text>
+          {/* <Text>Người dùng: {name}</Text> */}
           <Text>{"\n"}</Text>
           <Text style={styles.title3}>TEXT COMPARE APP</Text>
           <Text>{"\n"}</Text>
@@ -384,7 +357,6 @@ const App = () => {
           <StatusBar style="auto" />
         </ImageBackground>
       </ScrollView>
-
     );
   }
   const ClickHistoryButton = () => {
@@ -420,6 +392,7 @@ const App = () => {
       </ScrollView>
     );
   }
+
   function MyStack() {
     return (
       <Stack.Navigator
@@ -438,6 +411,13 @@ const App = () => {
           component={MainScreen}
           screenOption={{ animationEnabled: true, animationTypeForReplace: 'pop' }}
         />
+          {/* <Tab.Screen 
+          name="screen1"
+          component={HomeScreen}/>
+
+        </Stack.Screen> */}
+        {/* <Tab.Screen name={detailsName} component={DetailsScreen} />
+        <Tab.Screen name={settingsName} component={SettingsScreen} /> */}
 
         <Stack.Screen
           name="History"
@@ -447,6 +427,7 @@ const App = () => {
       </Stack.Navigator>
     );
   }
+
   ////////########## CHẠY #########//////////////
   return (
     <NavigationContainer>
@@ -565,7 +546,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   container2: {
-    flex: 0.5,
+    flex: 1,
     backgroundColor: '#6b9080',
     flexDirection: 'column',
   },
@@ -604,8 +585,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   buttonContainer: {
-    // backgroundColor: '#f7c744',
-    paddingVertical: 2
+    //backgroundColor: '#f7c744',
+    paddingVertical: 2,
+    flex:0.5
   },
   buttonText: {
     textAlign: 'center',
