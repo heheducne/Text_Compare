@@ -74,6 +74,7 @@ const App = () => {
       newText: this.state.TextInputValue,
     });
   }
+
   function MainScreen({ navigation }) {
     ///set value
     const [nameFile1, setnameFile1] = useState("Chọn File số 1");
@@ -88,6 +89,7 @@ const App = () => {
     const [text_result2, setText2] = useState("");
     const [numchar1, setnumchar1] = useState("t dell biet lam");
     const [numchar2, setnumchar2] = useState("t dell biet lam");
+    const [fileData3, setFileData3] = useState("Text số 3");
     ///////////////////////////////////////////////
     //////////////////// pick file ////////////////
 
@@ -150,7 +152,10 @@ const App = () => {
       setFileData2(text);
       // setnumchar2(text.split(" ").length);
     }
-
+    function SwapText(){
+      setFileData1(fileData2);
+      setFileData2(fileData1);
+    }
     /////////////////////////////////////////////////
     return (
       <ScrollView style={styles.container}>
@@ -255,7 +260,7 @@ const App = () => {
 
             <Button
               title="Đổi vị trí 2 text"
-              onPress={() => Alert.alert("Nút switch đã đc bấm")}
+              onPress={() => SwapText()}
             // onPress={()=>{console.log(fileData1)}}
             />
 
