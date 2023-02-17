@@ -70,14 +70,14 @@ const App = () => {
     ///set value
     const [nameFile1, setnameFile1] = useState("Chọn File số 1");
     const [nameFile2, setnameFile2] = useState("Chọn File số 2");
-    const [fileData1, setFileData1] = useState("Text số 1");//////biến lưu dư liệu text 1
-    const [fileData2, setFileData2] = useState("Text số 2");//////biến lưu dữ liệu text 2
+    const [fileData1, setFileData1] = useState("");//////biến lưu dư liệu text 1
+    const [fileData2, setFileData2] = useState("");//////biến lưu dữ liệu text 2
     const [numofLineFile1, setnumofLineFile1] = useState(0);
     const [numofLineFile2, setnumofLineFile2] = useState(0);
     const [search_word1, setsearchWord1] = useState(" ");
     const [search_word2, setsearchWord2] = useState(" ");
-    const [fileData3, setFileData3] = useState("Text số 3");
-    const [fileData4, setFileData4] = useState("Text số 4");
+    const [fileData3, setFileData3] = useState("");
+    const [fileData4, setFileData4] = useState("");
     ///////////////////////////////////////////////
     //////////////////// pick file ////////////////
 
@@ -245,6 +245,7 @@ const App = () => {
 
             <Text>{"\n"}</Text>
             <Highlighter
+              placeholder="Text số 1"
               scrollEnabled={true}
               textAlignVertical='top'
               highlightStyle={{ backgroundColor: 'yellow' }}
@@ -279,6 +280,7 @@ const App = () => {
 
             <Text>{"\n"}</Text>
             <Highlighter
+              placeholder="Text số 2"
               scrollEnabled={true}
               textAlignVertical='top'
               highlightStyle={{ backgroundColor: 'yellow' }}
@@ -314,7 +316,7 @@ const App = () => {
             </View>
             <Text style={styles.filename2}>Text 1 📃</Text>
             <TextInput
-              placeholder="Text số 1"
+              placeholder={fileData2}
               style={styles.textBox}
               multiline={true}
               numberOfLines={10}
