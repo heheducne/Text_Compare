@@ -78,6 +78,7 @@ function MainScreen({ navigation }) {
       const [search_word2,setsearchWord2] = useState(" ");
       const [numchar1,setnumchar1]= useState("t dell biet lam");
       const [numchar2,setnumchar2]= useState("t dell biet lam");
+      const [fileData3, setFileData3] = useState("Text số 3");
       ///////////////////////////////////////////////
           //////////////////// pick file ////////////////
 
@@ -140,6 +141,12 @@ let return2 = async (text)=>{
   setFileData2(text);
   // setnumchar2(text.split(" ").length);
 }
+
+function One(){
+  setFileData1(fileData2);
+  setFileData2(fileData1);
+}
+
   /////////////////////////////////////////////////
   return (
     <ScrollView style={styles.container}>
@@ -244,7 +251,7 @@ let return2 = async (text)=>{
     
         <Button
                 title="Đổi vị trí 2 text"
-                onPress={() => Alert.alert("Nút switch đã đc bấm")}
+                onPress={() => One()}
                 // onPress={()=>{console.log(fileData1)}}
             />
 
