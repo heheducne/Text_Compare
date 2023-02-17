@@ -20,6 +20,7 @@ const background = { uri: 'https://images.pexels.com/photos/2310713/pexels-photo
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const [name, setName] = useState("");
   ///#########################  CÁC SCREENS  ###################################///
   function HomeScreen({ navigation }) {
     return (
@@ -34,22 +35,12 @@ const App = () => {
             onPress={Keyboard.dismiss}>
             <View style={styles.logoContainer}>
               <View style={styles.infoContainer}>
-                <Text style={styles.title}>Thông tin tài khoản</Text>
+                <Text style={styles.title}>Thông tin người dùng</Text>
                 <TextInput style={styles.input}
-                  placeholder="Nhập username/email"
+                  placeholder="Nhập tên của bạn"
                   placeholderTextColor='rgba(255,255,255,0.8)'
-                  keyboardType='email-address'
+                  onChangeText={value => setName(value)}
                   returnKeyType='next'
-                //autoCorrect={false}
-                // onSubmitEditing={()=> this.refs.txtPassword.focus()}
-                />
-                <TextInput style={styles.input}
-                  placeholder="Nhập password"
-                  placeholderTextColor='rgba(255,255,255,0.8)'
-                  returnKeyType='go'
-                  secureTextEntry
-                //autoCorrect={false}
-                // ref={"txtPassword"}
                 />
                 <TouchableOpacity style={styles.buttonContainer}>
                   <Button
@@ -164,6 +155,7 @@ const App = () => {
         <Text>{"\n"}</Text>
         <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
+          <Text>Người dùng: {name}</Text>
           <Text>{"\n"}</Text>
           <Text style={styles.title3}>TEXT COMPARE APP</Text>
           <Text>{"\n"}</Text>
@@ -485,24 +477,30 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    
   },
   textStyle: {
     width: "75%",
     backgroundColor: "white",
     fontSize: 20,
-    ScrollView: true,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    //ScrollView: true,
+    //multiline:true
   },
   textStyle2: {
     width: "75%",
     backgroundColor: "white",
     fontSize: 8,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    borderWidth: 0.5,
+    borderRadius: 10,
   },
   fixToText: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: "100%"
+    width: "100%",
   },
   fixToText2: {
     flexDirection: 'column',
@@ -514,7 +512,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     fontSize: 10,
-    ScrollView: true,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    //ScrollView: true,
   },
   container1: {
     flex: 1,
@@ -551,7 +551,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.2)',
     color: '#FFF',
     marginBottom: 20,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    borderWidth: 0.5,
+    borderRadius: 10,
   },
   buttonContainer: {
     // backgroundColor: '#f7c744',
