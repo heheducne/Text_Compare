@@ -85,11 +85,8 @@ const App = () => {
     const [numofLineFile2, setnumofLineFile2] = useState(0);
     const [search_word1, setsearchWord1] = useState(" ");
     const [search_word2, setsearchWord2] = useState(" ");
-    const [text_result1, setText1] = useState("");
-    const [text_result2, setText2] = useState("");
-    const [numchar1, setnumchar1] = useState("t dell biet lam");
-    const [numchar2, setnumchar2] = useState("t dell biet lam");
     const [fileData3, setFileData3] = useState("Text số 3");
+    const [fileData4, setFileData4] = useState("Text số 4");
     ///////////////////////////////////////////////
     //////////////////// pick file ////////////////
 
@@ -152,9 +149,14 @@ const App = () => {
       setFileData2(text);
       // setnumchar2(text.split(" ").length);
     }
-    function SwapText(){
+    function SwapText() {
       setFileData1(fileData2);
       setFileData2(fileData1);
+    }
+
+    function Compare() {
+      setFileData3(fileData1);
+      setFileData4(fileData2);
     }
     /////////////////////////////////////////////////
     return (
@@ -256,7 +258,6 @@ const App = () => {
               onChangeText={text => return1(text)}
             />
             <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
-            <Text style={styles.filename}>Số chữ: {numchar1}</Text>
 
             <Button
               title="Đổi vị trí 2 text"
@@ -292,7 +293,6 @@ const App = () => {
 
             />
             <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
-            <Text style={styles.filename}>Số chữ: {numchar2}</Text>
           </SafeAreaView>
 
           <Text>{"\n"}</Text>
@@ -307,7 +307,7 @@ const App = () => {
             <View style={styles.fixToText2}>
               <Button
                 title="So sánh và hiện tất cả"
-                onPress={() => Alert.alert('Nút show all được bấm')}
+                onPress={() => Compare()}
               />
 
               <Text>{"\n"}</Text>
@@ -322,7 +322,7 @@ const App = () => {
               textAlignVertical='top'
               editable={false}
               scrollEnabled={true}
-
+              value={fileData3}
             />
 
             <Text>{"\n"}</Text>
@@ -337,7 +337,6 @@ const App = () => {
               editable={false}
               scrollEnabled={true}
             />
-            <Text style={styles.filename}>Khác biệt ở dòng thứ: </Text>
             <Text style={styles.filename}>Số chữ khác biệt: </Text>
           </SafeAreaView>
 
