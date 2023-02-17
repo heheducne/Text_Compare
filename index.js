@@ -152,7 +152,7 @@ const App = () => {
       setFileData2(text);
       // setnumchar2(text.split(" ").length);
     }
-    function SwapText(){
+    function SwapText() {
       setFileData1(fileData2);
       setFileData2(fileData1);
     }
