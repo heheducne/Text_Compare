@@ -183,6 +183,13 @@ const App = () => {
                 setsearchWord2("Tìm kiếm")
               }}
             />
+            <Button
+              title="Setting🔧"
+              color="#086788"
+              onPress={() => {
+
+              }}
+              />
           </View>
 
           <Text>{"\n"}</Text>
