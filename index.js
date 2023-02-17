@@ -186,7 +186,7 @@ const App = () => {
               onPress={() => {
 
               }}
-              />
+            />
           </View>
 
           <Text>{"\n"}</Text>
@@ -335,6 +335,7 @@ const App = () => {
               textAlignVertical='top'
               editable={false}
               scrollEnabled={true}
+              value={fileData4}
             />
             <Text style={styles.filename}>Số chữ khác biệt: </Text>
           </SafeAreaView>
@@ -345,10 +346,11 @@ const App = () => {
 
     );
   }
-  const ClickHistoryButton = () => { 
-    const [clickHistory, setClickHistory] = useState([]); 
-    const handleClick = () => { setClickHistory([...clickHistory, new Date().toISOString()]); }; 
-    return ( <button onPress={handleClick}> {clickHistory.length > 0 ? `Clicked ${clickHistory.length} times` : 'Click me'} </button> ); };
+  const ClickHistoryButton = () => {
+    const [clickHistory, setClickHistory] = useState([]);
+    const handleClick = () => { setClickHistory([...clickHistory, new Date().toISOString()]); };
+    return (<button onPress={handleClick}> {clickHistory.length > 0 ? `Clicked ${clickHistory.length} times` : 'Click me'} </button>);
+  };
   function HistoryScreen({ navigation }) {
     return (
       <ScrollView style={styles.container}>
@@ -478,7 +480,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    
+
   },
   textStyle: {
     width: "75%",
