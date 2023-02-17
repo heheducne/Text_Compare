@@ -62,38 +62,8 @@ const App = () => {
             </View>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
-<<<<<<< HEAD
       </SafeAreaView>
     );
-=======
-    </SafeAreaView> 
-  );
-}
-
-function MainScreen({ navigation }) {
-      ///set value
-      const [nameFile1, setnameFile1] = useState("Chọn File số 1");
-      const [nameFile2, setnameFile2] = useState("Chọn File số 2");
-      const [fileData1, setFileData1] = useState("Text số 1");//////biến lưu dư liệu text 1
-      const [fileData2, setFileData2] = useState("Text số 2");//////biến lưu dữ liệu text 2
-      const [numofLineFile1,setnumofLineFile1] = useState(0);
-      const [numofLineFile2,setnumofLineFile2] = useState(0);
-      const [search_word1,setsearchWord1] = useState(" "); 
-      const [search_word2,setsearchWord2] = useState(" ");
-      const [numchar1,setnumchar1]= useState("t dell biet lam");
-      const [numchar2,setnumchar2]= useState("t dell biet lam");
-      const [fileData3, setFileData3] = useState("Text số 3");
-      ///////////////////////////////////////////////
-          //////////////////// pick file ////////////////
-
-let ChoseFile1 = useCallback(async () => {
-  try {
-    let response1 = await DocumentPicker.pickSingle();
-    setnameFile1(response1.name);
-    readFile1(response1.uri);
-  } catch (err) {
-    console.warn(err);
->>>>>>> cee3af518d88f3648b681894ffe4f5930ab38847
   }
   state = {
     TextInputValue: '', // for onChangeText handler
@@ -181,41 +151,11 @@ let ChoseFile1 = useCallback(async () => {
       // setnumchar2(text.split(" ").length);
     }
 
-<<<<<<< HEAD
     /////////////////////////////////////////////////
     return (
       <ScrollView style={styles.container}>
         <Text>{"\n"}</Text>
         <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
-=======
-let return1 = async (text)=>{
-  while(text[text.length-1]=='\n'){
-    text=text.slice(0, -1);
-  }
-  setnumofLineFile1(text.split("\n").length);
-  setFileData1(text);
-  // setnumchar1(text.split(" ").length);
-}
-let return2 = async (text)=>{
-  while(text[text.length-1]=='\n'){
-    text=text.slice(0, -1);
-  }
-  setnumofLineFile2(text.split("\n").length);
-  setFileData2(text);
-  // setnumchar2(text.split(" ").length);
-}
-
-function One(){
-  setFileData1(fileData2);
-  setFileData2(fileData1);
-}
-
-  /////////////////////////////////////////////////
-  return (
-    <ScrollView style={styles.container}>
-      <Text>{"\n"}</Text>
-      <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
->>>>>>> cee3af518d88f3648b681894ffe4f5930ab38847
         <ImageBackground source={background} resizeMode="stretch" style={styles.image}>
           <Text>{"\n"}</Text>
           <Text style={styles.title3}>TEXT COMPARE APP</Text>
@@ -313,81 +253,6 @@ function One(){
             <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
             <Text style={styles.filename}>Số chữ: {numchar1}</Text>
 
-<<<<<<< HEAD
-=======
-      <SafeAreaView style={styles.normal}>
-        <Text style={styles.filename2}>Text 1 📃</Text>
-          <View style={styles.innerContainer}>  
-              <TextInput  
-                      padding={5}
-                      placeholder="Tìm kiếm"  
-                      style={styles.textStyle2} 
-                      onChangeText={newtext => setsearchWord1(newtext)}
-              />  
-          </View>
-        
-        <Text>{"\n"}</Text>
-        <Highlighter
-            scrollEnabled = {true}
-            textAlignVertical= 'top'
-            highlightStyle={{backgroundColor: 'yellow'}}
-            searchWords={[search_word1]}
-            textToHighlight= {fileData1}
-            multiline = {true}
-            numberOfLines={10}
-            style={styles.textBox}
-            editable ={true}    
-            onChangeText = {text => return1(text)}
-        />
-        <Text style={styles.filename}>Số dòng: {numofLineFile1}</Text>
-        <Text style={styles.filename}>Số chữ: {numchar1}</Text>
-    
-        <Button
-                title="Đổi vị trí 2 text"
-                onPress={() => One()}
-                // onPress={()=>{console.log(fileData1)}}
-            />
-
-        <Text>{"\n"}</Text>
-    
-        <Text style={styles.filename2}>Text 2 📃</Text>
-          <View style={styles.innerContainer}>  
-              <TextInput  
-                      padding={5}
-                      placeholder="Tìm kiếm"  
-                      style={styles.textStyle2}  
-                      editable ={true}
-                      onChangeText={text => setsearchWord2(text)}
-              /> 
-          </View>
-         
-        <Text>{"\n"}</Text>   
-        <Highlighter
-            scrollEnabled = {true}
-            textAlignVertical= 'top'
-            highlightStyle={{backgroundColor: 'yellow'}}
-            searchWords={[search_word2]}
-            textToHighlight= {fileData2}
-            multiline = {true}
-            numberOfLines={10}
-            style={styles.textBox}
-            editable ={true}
-            onChangeText = {text => return2(text)}
-        />
-        <Text style={styles.filename}>Số dòng: {numofLineFile2}</Text>
-        <Text style={styles.filename}>Số chữ: {numchar2}</Text>
-      </SafeAreaView>
-  
-      <Text>{"\n"}</Text>
-      
-      
-      <Text style={styles.normal}>Compare Text 📒📒</Text>
-
-      <Text>{"\n"}</Text>
-
-      <SafeAreaView>
-        <View style={styles.fixToText2}>
->>>>>>> cee3af518d88f3648b681894ffe4f5930ab38847
             <Button
               title="Đổi vị trí 2 text"
               onPress={() => Alert.alert("Nút switch đã đc bấm")}
@@ -430,6 +295,7 @@ function One(){
 
           <Text style={styles.normal}>Compare Text 📒📒</Text>
 
+
           <Text>{"\n"}</Text>
 
           <SafeAreaView>
@@ -456,7 +322,6 @@ function One(){
 
             <Text>{"\n"}</Text>
 
-<<<<<<< HEAD
             <Text style={styles.filename2}>Text 2 📃</Text>
             <TextInput
               placeholder={fileData2}
@@ -480,20 +345,6 @@ function One(){
   function HistoryScreen({ navigation }) {
     return (
       <ScrollView style={styles.container}>
-=======
-        </View>
-        <Text style={styles.filename2}>Text 1 📃</Text>
-        <TextInput  
-                    placeholder={fileData1} 
-                    style={styles.textBox} 
-                    multiline = {true}
-                    numberOfLines={10} 
-                    textAlignVertical= 'top'
-                    editable={false}
-                    scrollEnabled = {true}
-            />
-        
->>>>>>> cee3af518d88f3648b681894ffe4f5930ab38847
         <Text>{"\n"}</Text>
         <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
         <View style={styles.fixToText}>
