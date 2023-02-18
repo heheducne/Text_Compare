@@ -4,15 +4,15 @@
 import { AppRegistry } from 'react-native';
 import { React, useCallback, useState, useRef } from 'react';
 import { name as appName } from './app.json';
-import { StyleSheet, Text, SafeAreaView, Button, ScrollView, View, ImageBackground, Alert, Image, TextInput, TouchableWithoutFeedback, Keyboard, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, Button, ScrollView, View, ImageBackground, Image, TextInput, TouchableWithoutFeedback, Keyboard, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs'
 import Highlighter from './highlight.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 //////////////////////////////////////////////
@@ -352,34 +352,34 @@ const App = () => {
   //   const handleClick = () => { setClickHistory([...clickHistory, new Date().toISOString()]); };
   //   return (<button onPress={handleClick}> {clickHistory.length > 0 ? `Clicked ${clickHistory.length} times` : 'Click me'} </button>);
   // };
-  // function HistoryScreen({ navigation }) {
-  //   return (
-  //     <ScrollView style={styles.container}>
-  //       <Text>{"\n"}</Text>
-  //       <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
-  //       <View style={styles.fixToText}>
-  //         <TextInput
-  //           scrollEnabled={true}
-  //           textAlignVertical='top'
-  //           highlightStyle={{ backgroundColor: 'yellow' }}
-  //           multiline={true}
-  //           numberOfLines={1000}
-  //           style={styles.textBox}
-  //           editable={false}
-  //         />
-  //         <TextInput
-  //           scrollEnabled={true}
-  //           textAlignVertical='top'
-  //           highlightStyle={{ backgroundColor: 'yellow' }}
-  //           multiline={true}
-  //           numberOfLines={1000}
-  //           style={styles.textBox}
-  //           editable={false}
-  //         />
-  //       </View>
-  //     </ScrollView>
-  //   );
-  // }
+  function HistoryScreen({ navigation }) {
+    return (
+      <ScrollView style={styles.container}>
+        <Text>{"\n"}</Text>
+        <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
+        <View style={styles.fixToText}>
+          <TextInput
+            scrollEnabled={true}
+            textAlignVertical='top'
+            highlightStyle={{ backgroundColor: 'yellow' }}
+            multiline={true}
+            numberOfLines={1000}
+            style={styles.textBox}
+            editable={false}
+          />
+          <TextInput
+            scrollEnabled={true}
+            textAlignVertical='top'
+            highlightStyle={{ backgroundColor: 'yellow' }}
+            multiline={true}
+            numberOfLines={1000}
+            style={styles.textBox}
+            editable={false}
+          />
+        </View>
+      </ScrollView>
+    );
+  }
 
   function MyStack() {
     return (
@@ -400,11 +400,11 @@ const App = () => {
           screenOption={{ animationEnabled: true, animationTypeForReplace: 'pop' }}
         />
 
-        {/* <Stack.Screen
+        <Stack.Screen
           name="History"
           component={HistoryScreen}
           screenOption={{ animationEnabled: true, animationTypeForReplace: 'pop' }}
-        /> */}
+        />
       </Stack.Navigator>
     );
   }
@@ -516,7 +516,7 @@ const styles = StyleSheet.create({
     padding: 1,
     flex: 1,
     backgroundColor: "white",
-    fontSize: 10,
+    fontSize: 20,
     borderWidth: 0.5,
     borderRadius: 10,
     //ScrollView: true,
