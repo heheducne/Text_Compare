@@ -187,6 +187,11 @@ const App = () => {
                 setsearchWord2("Tìm kiếm")
               }}
             />
+            <Button
+              title="Lịch sử 🔒"
+              color="#52b788"
+              onPress={() => navigation.navigate('History')}
+            />
           </View>
 
           <Text>{"\n"}</Text>
