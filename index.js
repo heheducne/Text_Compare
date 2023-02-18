@@ -21,7 +21,7 @@ AppRegistry.registerComponent(appName, () => App);
 const logo = { uri: 'https://reactnative.dev/img/tiny_logo.png', width: 64, height: 64 };
 const background = { uri: 'https://images.pexels.com/photos/2310713/pexels-photo-2310713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' };
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
 
 const App = () => {
   
@@ -38,7 +38,7 @@ const App = () => {
           <Text style={styles.title}>MỘT ỨNG DỤNG CỦA TEAM DTDT</Text>
           <Image source={logo} style={{ alignSelf: 'center' }} />
           <TouchableWithoutFeedback style={styles.container2}
-            //onPress={Keyboard.dismiss}
+            onPress={Keyboard.dismiss}
             >
             <View style={styles.logoContainer}>
               <View style={styles.infoContainer}>
@@ -174,11 +174,6 @@ const App = () => {
 
           <View style={styles.fixToText}>
             <Button
-              title="Lịch sử 🔒"
-              color="#52b788"
-              onPress={() => navigation.navigate('History')}
-            />
-            <Button
               title="Reset 🔑"
               color="#d62828"
               onPress={() => {
@@ -190,13 +185,6 @@ const App = () => {
                 setnumofLineFile2("0")
                 setsearchWord1("Tìm kiếm")
                 setsearchWord2("Tìm kiếm")
-              }}
-            />
-            <Button
-              title="Setting🔧"
-              color="#086788"
-              onPress={() => {
-
               }}
             />
           </View>
@@ -359,39 +347,39 @@ const App = () => {
       </ScrollView>
     );
   }
-  const ClickHistoryButton = () => {
-    const [clickHistory, setClickHistory] = useState([]);
-    const handleClick = () => { setClickHistory([...clickHistory, new Date().toISOString()]); };
-    return (<button onPress={handleClick}> {clickHistory.length > 0 ? `Clicked ${clickHistory.length} times` : 'Click me'} </button>);
-  };
-  function HistoryScreen({ navigation }) {
-    return (
-      <ScrollView style={styles.container}>
-        <Text>{"\n"}</Text>
-        <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
-        <View style={styles.fixToText}>
-          <TextInput
-            scrollEnabled={true}
-            textAlignVertical='top'
-            highlightStyle={{ backgroundColor: 'yellow' }}
-            multiline={true}
-            numberOfLines={1000}
-            style={styles.textBox}
-            editable={false}
-          />
-          <TextInput
-            scrollEnabled={true}
-            textAlignVertical='top'
-            highlightStyle={{ backgroundColor: 'yellow' }}
-            multiline={true}
-            numberOfLines={1000}
-            style={styles.textBox}
-            editable={false}
-          />
-        </View>
-      </ScrollView>
-    );
-  }
+  // const ClickHistoryButton = () => {
+  //   const [clickHistory, setClickHistory] = useState([]);
+  //   const handleClick = () => { setClickHistory([...clickHistory, new Date().toISOString()]); };
+  //   return (<button onPress={handleClick}> {clickHistory.length > 0 ? `Clicked ${clickHistory.length} times` : 'Click me'} </button>);
+  // };
+  // function HistoryScreen({ navigation }) {
+  //   return (
+  //     <ScrollView style={styles.container}>
+  //       <Text>{"\n"}</Text>
+  //       <Button title="Go back" color="#d62828" onPress={() => navigation.goBack()} />
+  //       <View style={styles.fixToText}>
+  //         <TextInput
+  //           scrollEnabled={true}
+  //           textAlignVertical='top'
+  //           highlightStyle={{ backgroundColor: 'yellow' }}
+  //           multiline={true}
+  //           numberOfLines={1000}
+  //           style={styles.textBox}
+  //           editable={false}
+  //         />
+  //         <TextInput
+  //           scrollEnabled={true}
+  //           textAlignVertical='top'
+  //           highlightStyle={{ backgroundColor: 'yellow' }}
+  //           multiline={true}
+  //           numberOfLines={1000}
+  //           style={styles.textBox}
+  //           editable={false}
+  //         />
+  //       </View>
+  //     </ScrollView>
+  //   );
+  // }
 
   function MyStack() {
     return (
@@ -411,19 +399,12 @@ const App = () => {
           component={MainScreen}
           screenOption={{ animationEnabled: true, animationTypeForReplace: 'pop' }}
         />
-          {/* <Tab.Screen 
-          name="screen1"
-          component={HomeScreen}/>
 
-        </Stack.Screen> */}
-        {/* <Tab.Screen name={detailsName} component={DetailsScreen} />
-        <Tab.Screen name={settingsName} component={SettingsScreen} /> */}
-
-        <Stack.Screen
+        {/* <Stack.Screen
           name="History"
           component={HistoryScreen}
           screenOption={{ animationEnabled: true, animationTypeForReplace: 'pop' }}
-        />
+        /> */}
       </Stack.Navigator>
     );
   }
