@@ -12,6 +12,7 @@ import Highlighter from './highlight.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Worddiff } from './findDiff';
+
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -87,12 +88,13 @@ const App = () => {
     const [fileData2, setFileData2] = useState("");//////biến lưu dữ liệu text 2
     const [numofLineFile1, setnumofLineFile1] = useState(0);
     const [numofLineFile2, setnumofLineFile2] = useState(0);
-    const [search_word1, setsearchWord1] = useState("");
-    const [search_word2, setsearchWord2] = useState("");
+    const [search_word1, setsearchWord1] = useState(" ");
+    const [search_word2, setsearchWord2] = useState(" ");
     const [fileData3, setFileData3] = useState("");
     const [fileData4, setFileData4] = useState("");
     const [lstDiff1,setlstDiff1] =useState([]);
     const [lstDiff2,setlstDiff2] =useState([]);
+
     ///////////////////////////////////////////////
     //////////////////// pick file ////////////////
 
@@ -124,7 +126,8 @@ const App = () => {
         response = response.slice(0, -1);
       }
       setFileData1(response); //set the value of response to the fileData Hook.
-      setnumofLineFile1(response.split("\n").length);
+      // setnumofLineFile1(response.split("\n").length);
+      setnumchar1(response.length);
     };
 
     let readFile2 = async (path) => {
@@ -133,6 +136,7 @@ const App = () => {
         response = response.slice(0, -1);
       }
       setnumofLineFile2(response.split("\n").length);
+      // setnumchar2(response.length);
       setFileData2(response); //set the value of response to the fileData Hook.
     };
     ////////////////////count char, line///////////////////
@@ -194,9 +198,7 @@ const App = () => {
             <Button
               title="Lịch sử 🔒"
               color="#52b788"
-              onPress={() => {
-                console.log(lstDiff1);
-              }}
+              onPress={() => navigation.navigate('History')}
             />
           </View>
 
@@ -326,32 +328,31 @@ const App = () => {
 
             </View>
             <Text style={styles.filename2}>Text 1 📃</Text>
-            <Highlighter
-              scrollEnabled={true}
-              textAlignVertical='top'
-              highlightStyle={{ backgroundColor: 'red' }}
-              searchWords={lstDiff1}
-              textToHighlight={fileData3}
+            <TextInput
+              placeholder={fileData2}
+              style={styles.textBox}
               multiline={true}
               numberOfLines={10}
-              style={styles.textBox}
+              textAlignVertical='top'
               editable={false}
+              scrollEnabled={true}
+              value={fileData3}
             />
 
             <Text>{"\n"}</Text>
 
-            <Highlighter
-              placeholder="Text số 2"
-              scrollEnabled={true}
-              textAlignVertical='top'
-              highlightStyle={{ backgroundColor: 'red' }}
-              searchWords={lstDiff2}
-              textToHighlight={fileData4}
+            <Text style={styles.filename2}>Text 2 📃</Text>
+            <TextInput
+              placeholder={fileData2}
+              style={styles.textBox}
               multiline={true}
               numberOfLines={10}
-              style={styles.textBox}
+              textAlignVertical='top'
               editable={false}
+              scrollEnabled={true}
+              value={fileData4}
             />
+            <Text style={styles.filename}>Số chữ khác biệt: </Text>
           </SafeAreaView>
 
           <StatusBar style="auto" />
