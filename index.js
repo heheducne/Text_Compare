@@ -434,17 +434,20 @@ const App = () => {
           headerShown: false
         }}
       >
+        
         <Stack.Screen
           name="Text Compare App"
           component={HomeScreen}
           screenOption={{ animationEnabled: true, animationTypeForReplace: 'pop' }}
         />
 
+
         <Stack.Screen
           name="Main"
           component={MainScreen}
           screenOption={{ animationEnabled: true, animationTypeForReplace: 'pop' }}
         />
+
 
         <Stack.Screen
           name="History"
